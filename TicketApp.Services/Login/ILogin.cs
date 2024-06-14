@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicketApp.Services.Login
 {
-    internal interface ILogin
+    public interface ILogin
     {
     }
 }
