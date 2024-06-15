@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,27 +6,35 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TicketApp.Services.Data;
+using TicketApp.Services.Login;
+using TicketApp.Vistas;
 
 namespace TicketApp
 {
     public partial class Login : Form
     {
-        public Login()
+        private readonly ILoginService _loginService;
+        private readonly AppSettings _appSettings;
+
+        public Login(ILoginService loginService, IOptions<AppSettings> appSettings)
         {
             InitializeComponent();
+            this._loginService = loginService;
+            this._appSettings = appSettings.Value;
         }
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            progressBarLogin.Visible = true; 
+            progressBarLogin.Visible = true;
 
             string username = txtUser.Text;
             string password = txtPassword.Text;
-            string recaptchaToken = "6LeA3DEkAAAAAH2SpNpJpbHHOc6isGqIefkZX5TI"; // Mejor cargar esto desde una variable de entorno o un archivo de configuración
-
+            string recaptchaToken = _appSettings.RecaptchaToken;
+            
             var loginData = new LoginData
             {
                 Usuario = username,
@@ -34,53 +42,33 @@ namespace TicketApp
                 recaptchaToken = recaptchaToken
             };
 
-            var response = await PostLoginAsync(loginData);
+            var response = await _loginService.LoginAsync(loginData);
 
             if (response != null && response.ok)
             {
                 // Login exitoso, abrir ventana principal
                 /*  PrincipalForm principalForm = new PrincipalForm();
                   principalForm.Show();
-                  this.Hide();*/
+                  this.Hide();
 
                 progressBarLogin.Visible = false;
-                MessageBox.Show("Acceso ok");
+                MessageBox.Show("Acceso ok", "Hola", MessageBoxButtons.OK, MessageBoxIcon.Information); */
+                var ventanaAdmin = new frmAdmin(); // Reemplaza con tu formulario principal
+                ventanaAdmin.Show();
+
+                this.Hide();
             }
             else
             {
                 // Manejar error de autenticación
 
                 progressBarLogin.Visible = false;
-                MessageBox.Show("Error de autenticación, por favor verifica tus credenciales.");
+                MessageBox.Show("No puede ingresar",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
-
-
-        private async Task<LoginResponse> PostLoginAsync(LoginData loginData)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                string url = "https://tickets-dotnet-production.up.railway.app/api/usuarios/loginwin"; // Reemplaza con la URL real de tu API
-                string json = JsonConvert.SerializeObject(loginData);
-                StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-
-                HttpResponseMessage response = await client.PostAsync(url, data);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string result = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<LoginResponse>(result);
-                }
-                else
-                {
-                    // Manejar errores HTTP
-                    return null;
-                }
-            }
-        }
-
-
-
 
 
     }

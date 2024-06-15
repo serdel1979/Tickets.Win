@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TicketApp.Services.Login
+namespace TicketApp.Services.Data
 {
-    public interface ILogin
+    public class AppSettings
     {
+        public string RecaptchaToken { get; set; }
     }
 }
