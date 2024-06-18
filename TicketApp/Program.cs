@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TicketApp.Services.Data;
 using TicketApp.Services.Login;
+using TicketApp.Services.Solicitudes;
 
 namespace TicketApp
 {
@@ -36,6 +37,7 @@ namespace TicketApp
                     services.AddSingleton<TokenService>();
 
                     services.AddTransient<ILoginService, LoginService>();
+                    services.AddTransient<ISolicitudesService, SolicitudesService>();
 
                     
 
