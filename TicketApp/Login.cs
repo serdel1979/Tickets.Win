@@ -18,12 +18,14 @@ namespace TicketApp
     public partial class Login : Form
     {
         private readonly ILoginService _loginService;
+        private readonly TokenService _tokenService;
         private readonly AppSettings _appSettings;
 
-        public Login(ILoginService loginService, IOptions<AppSettings> appSettings)
+        public Login(ILoginService loginService, IOptions<AppSettings> appSettings, TokenService tokenService)
         {
             InitializeComponent();
             this._loginService = loginService;
+            this._tokenService = tokenService;
             this._appSettings = appSettings.Value;
         }
 
@@ -46,17 +48,26 @@ namespace TicketApp
 
             if (response != null && response.ok)
             {
-                // Login exitoso, abrir ventana principal
-                /*  PrincipalForm principalForm = new PrincipalForm();
-                  principalForm.Show();
-                  this.Hide();
+                _tokenService.SetLoginResponse(response);
+                LoginResponse resp = _tokenService.LoginResponse;
+                
+                if(resp.claims == 1)
+                {
+                    var frmAdmin = new frmAdmin(_tokenService); // Pasar el servicio al nuevo formulario
+                    frmAdmin.Show();
+                    progressBarLogin.Visible = false;
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Inició como usuario común",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                }
 
-                progressBarLogin.Visible = false;
-                MessageBox.Show("Acceso ok", "Hola", MessageBoxButtons.OK, MessageBoxIcon.Information); */
-                var ventanaAdmin = new frmAdmin(); // Reemplaza con tu formulario principal
-                ventanaAdmin.Show();
+                
 
-                this.Hide();
             }
             else
             {

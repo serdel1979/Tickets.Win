@@ -33,7 +33,12 @@ namespace TicketApp
                     services.Configure<ApiSettings>(context.Configuration.GetSection("ApiSettings"));
                     services.Configure<AppSettings>(context.Configuration.GetSection("AppSettings"));
 
+                    services.AddSingleton<TokenService>();
+
                     services.AddTransient<ILoginService, LoginService>();
+
+                    
+
                     services.AddTransient<Login>();
                 });
         }

@@ -14,9 +14,11 @@ namespace TicketApp.Services.Login
 
 
         private readonly ApiSettings _apiSettings;
-        public LoginService(IOptions<ApiSettings> apiSettings)
+        private readonly TokenService _tokenService;
+        public LoginService(IOptions<ApiSettings> apiSettings, TokenService tokenService)
         {
-            _apiSettings = apiSettings.Value;
+            _apiSettings = apiSettings.Value; 
+            _tokenService = tokenService;
         }
 
 
@@ -33,7 +35,14 @@ namespace TicketApp.Services.Login
                 if (response.IsSuccessStatusCode)
                 {
                     string result = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<LoginResponse>(result)!;
+
+                    LoginResponse daraResponse = new LoginResponse();
+
+                    daraResponse = JsonConvert.DeserializeObject<LoginResponse>(result)!;
+
+                    _tokenService.SetLoginResponse(daraResponse);
+
+                    return daraResponse;
                 }
                 else
                 {
