@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TicketApp.Services.Data;
 using TicketApp.Services.Login;
+using TicketApp.Services.Solicitudes;
 using TicketApp.Vistas;
 
 namespace TicketApp
@@ -18,14 +19,19 @@ namespace TicketApp
     public partial class Login : Form
     {
         private readonly ILoginService _loginService;
+        private readonly IOptions<AppSettings> appSettings;
         private readonly TokenService _tokenService;
+        private readonly ISolicitudesService solicitudesService;
         private readonly AppSettings _appSettings;
 
-        public Login(ILoginService loginService, IOptions<AppSettings> appSettings, TokenService tokenService)
+        public Login(ILoginService loginService, IOptions<AppSettings> appSettings, TokenService tokenService,
+            ISolicitudesService solicitudesService)
         {
             InitializeComponent();
             this._loginService = loginService;
+            this.appSettings = appSettings;
             this._tokenService = tokenService;
+            this.solicitudesService = solicitudesService;
             this._appSettings = appSettings.Value;
         }
 
@@ -53,7 +59,7 @@ namespace TicketApp
                 
                 if(resp.claims == 1)
                 {
-                    var frmAdmin = new frmAdmin(_tokenService); // Pasar el servicio al nuevo formulario
+                    var frmAdmin = new frmAdmin(_tokenService, solicitudesService); // Pasar el servicio al nuevo formulario
                     frmAdmin.Show();
                     progressBarLogin.Visible = false;
                     this.Hide();
