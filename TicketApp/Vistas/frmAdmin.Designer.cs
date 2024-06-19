@@ -37,11 +37,12 @@
             // 
             // panel1
             // 
+            panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(labelUsuario);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1040, 100);
+            panel1.Size = new Size(1149, 100);
             panel1.TabIndex = 0;
             // 
             // labelUsuario
@@ -56,17 +57,18 @@
             // 
             // dataGridViewSolicitudes
             // 
+            dataGridViewSolicitudes.BackgroundColor = SystemColors.ControlLightLight;
             dataGridViewSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewSolicitudes.Location = new Point(2, 174);
+            dataGridViewSolicitudes.Location = new Point(0, 254);
             dataGridViewSolicitudes.Name = "dataGridViewSolicitudes";
-            dataGridViewSolicitudes.Size = new Size(745, 383);
+            dataGridViewSolicitudes.Size = new Size(1038, 282);
             dataGridViewSolicitudes.TabIndex = 1;
             // 
             // frmAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1040, 628);
+            ClientSize = new Size(1149, 628);
             Controls.Add(dataGridViewSolicitudes);
             Controls.Add(panel1);
             Name = "frmAdmin";
