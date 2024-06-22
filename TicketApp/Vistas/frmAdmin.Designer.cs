@@ -59,9 +59,9 @@
             // 
             dataGridViewSolicitudes.BackgroundColor = SystemColors.ControlLightLight;
             dataGridViewSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewSolicitudes.Location = new Point(0, 254);
+            dataGridViewSolicitudes.Location = new Point(0, 276);
             dataGridViewSolicitudes.Name = "dataGridViewSolicitudes";
-            dataGridViewSolicitudes.Size = new Size(1038, 282);
+            dataGridViewSolicitudes.Size = new Size(780, 279);
             dataGridViewSolicitudes.TabIndex = 1;
             // 
             // frmAdmin
@@ -73,6 +73,7 @@
             Controls.Add(panel1);
             Name = "frmAdmin";
             Text = "Panel";
+            Load += frmAdmin_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewSolicitudes).EndInit();

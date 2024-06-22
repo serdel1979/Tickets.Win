@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using TicketApp.Services.Data;
 using TicketApp.Services.Login;
 using TicketApp.Services.Solicitudes;
+using TicketApp.Signal;
+using static TicketApp.Signal.SignalRClient;
 
 namespace TicketApp.Vistas
 {
@@ -18,17 +20,23 @@ namespace TicketApp.Vistas
         private readonly TokenService _tokenService;
         private readonly ISolicitudesService solicitudesService;
 
+        private SignalRClient signalRClient;
+
         private List<Solicitud> solicitudes;
         public frmAdmin(TokenService loginService, ISolicitudesService solicitudesService)
         {
             InitializeComponent();
+
+            string urlHub = "https://tickets-dotnet-production.up.railway.app/Hubs/MHub";
+            signalRClient = new SignalRClient(this, urlHub);
+
             this._tokenService = loginService;
             this.solicitudesService = solicitudesService;
             var loginResponse = _tokenService.LoginResponse;
 
             if (loginResponse != null)
             {
-                
+
                 string jwtToken = loginResponse.token;
                 string userName = loginResponse.userName;
                 string email = loginResponse.email;
@@ -43,7 +51,7 @@ namespace TicketApp.Vistas
         }
 
 
-        private async void CargarSolicitudes()
+        public async void CargarSolicitudes()
         {
             try
             {
@@ -61,9 +69,28 @@ namespace TicketApp.Vistas
         {
 
             dataGridViewSolicitudes.DataSource = solicitudes;
+            dataGridViewSolicitudes.Columns["Id"].Visible = false;
+            dataGridViewSolicitudes.Columns["UsuarioId"].Visible = false;
+            dataGridViewSolicitudes.Columns["ContadorMensajes"].Visible = false;
+            ApplyConditionalFormatting();
+
         }
 
 
+        private void ApplyConditionalFormatting()
+        {
+            foreach (DataGridViewRow row in dataGridViewSolicitudes.Rows)
+            {
+                if (row.Cells["EstadoActual"].Value?.ToString() == "PENDIENTE")
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
+        }
 
+        private async void frmAdmin_Load(object sender, EventArgs e)
+        {
+            await signalRClient.StartAsync();
+        }
     }
 }
