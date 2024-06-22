@@ -92,5 +92,35 @@ namespace TicketApp.Vistas
         {
             await signalRClient.StartAsync();
         }
+
+        private void selectItem()
+        {
+            object v = dataGridViewSolicitudes.CurrentRow.Cells;
+
+            if (string.IsNullOrEmpty(dataGridViewSolicitudes.CurrentRow.Cells["Id"].Value.ToString()))
+            {
+                MessageBox.Show("Seleccione un registro",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                labelId.Text = Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Id"].Value);
+                lblUsuario.Text = "Usuario: " + Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Usuario"].Value);
+                labelEquipo.Text = "Equipo: "+  Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Equipo"].Value);
+                labelDepto.Text = "Departamento: "+Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Departamento"].Value);
+            }
+        }
+
+        private void dataGridViewSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.selectItem();
+        }
+
+        private void dataGridViewSolicitudes_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            this.selectItem();
+        }
     }
 }
