@@ -108,8 +108,8 @@ namespace TicketApp.Vistas
             {
                 labelId.Text = Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Id"].Value);
                 lblUsuario.Text = "Usuario: " + Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Usuario"].Value);
-                labelEquipo.Text = "Equipo: "+  Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Equipo"].Value);
-                labelDepto.Text = "Departamento: "+Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Departamento"].Value);
+                labelEquipo.Text = "Equipo: " + Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Equipo"].Value);
+                labelDepto.Text = "Departamento: " + Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Departamento"].Value);
             }
         }
 
@@ -121,6 +121,11 @@ namespace TicketApp.Vistas
         private void dataGridViewSolicitudes_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             this.selectItem();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
