@@ -37,12 +37,26 @@ namespace TicketApp
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
+            Ingresar();
+        }
+
+        private void txtUser_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                Ingresar();
+            }
+        }
+
+        private async void Ingresar()
+        {
             progressBarLogin.Visible = true;
 
             string username = txtUser.Text;
             string password = txtPassword.Text;
             string recaptchaToken = _appSettings.RecaptchaToken;
-            
+
             var loginData = new LoginData
             {
                 Usuario = username,
@@ -56,8 +70,8 @@ namespace TicketApp
             {
                 _tokenService.SetLoginResponse(response);
                 LoginResponse resp = _tokenService.LoginResponse;
-                
-                if(resp.claims == 1)
+
+                if (resp.claims == 1)
                 {
                     var frmAdmin = new frmAdmin(_tokenService, solicitudesService); // Pasar el servicio al nuevo formulario
                     frmAdmin.Show();
@@ -72,7 +86,7 @@ namespace TicketApp
                     MessageBoxIcon.Information);
                 }
 
-                
+
 
             }
             else
@@ -87,6 +101,13 @@ namespace TicketApp
             }
         }
 
-
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                Ingresar();
+            }
+        }
     }
 }

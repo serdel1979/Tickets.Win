@@ -125,7 +125,13 @@ namespace TicketApp.Vistas
 
         private void button1_Click(object sender, EventArgs e)
         {
+            FormDetalle frmDetalle = new FormDetalle(Int32.Parse(labelId.Text), solicitudesService);
+            frmDetalle.Show();
+        }
 
+        private void frmAdmin_Activated(object sender, EventArgs e)
+        {
+            CargarSolicitudes();
         }
     }
 }
