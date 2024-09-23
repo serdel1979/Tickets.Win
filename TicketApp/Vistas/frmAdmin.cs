@@ -125,8 +125,17 @@ namespace TicketApp.Vistas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FormDetalle frmDetalle = new FormDetalle(Int32.Parse(labelId.Text), solicitudesService);
-            frmDetalle.Show();
+            try
+            {
+                FormDetalle frmDetalle = new FormDetalle(Int32.Parse(labelId.Text), solicitudesService);
+                frmDetalle.Show();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Debe seleccionar un elemento de la tabla solicitudes","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+
         }
 
         private void frmAdmin_Activated(object sender, EventArgs e)

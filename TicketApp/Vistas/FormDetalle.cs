@@ -71,10 +71,10 @@ namespace TicketApp.Vistas
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            if(richTextBoxComentario.Text == "")
+            if (richTextBoxComentario.Text == "")
             {
                 MessageBox.Show("Debe agregar un comentario", "Completar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                return;                
+                return;
             }
 
             if (comboBoxEstadosPosibles.Text == "")
@@ -82,6 +82,11 @@ namespace TicketApp.Vistas
                 MessageBox.Show("Debe seleccionar un estado", "Completar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

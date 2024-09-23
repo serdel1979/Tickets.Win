@@ -49,6 +49,7 @@
             richTextBoxComentario = new RichTextBox();
             comboBoxEstadosPosibles = new ComboBox();
             progressBarCarga = new ProgressBar();
+            button2 = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -214,6 +215,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(button2);
             panel2.Controls.Add(button1);
             panel2.Controls.Add(richTextBoxComentario);
             panel2.Controls.Add(comboBoxEstadosPosibles);
@@ -259,6 +261,16 @@
             progressBarCarga.Style = ProgressBarStyle.Marquee;
             progressBarCarga.TabIndex = 15;
             // 
+            // button2
+            // 
+            button2.Location = new Point(323, 172);
+            button2.Name = "button2";
+            button2.Size = new Size(195, 43);
+            button2.TabIndex = 16;
+            button2.Text = "Cerrar";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // FormDetalle
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -302,5 +314,6 @@
         private RichTextBox richTextBoxComentario;
         private ComboBox comboBoxEstadosPosibles;
         private ProgressBar progressBarCarga;
+        private Button button2;
     }
 }

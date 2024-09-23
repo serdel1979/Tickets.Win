@@ -83,6 +83,43 @@ namespace TicketApp.Services.Solicitudes
             }
         }
 
+
+        public async Task NuevoEstado(int Id, NuevoEstado estado)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var jwtToken = _tokenService.ParseToken();
+                if (jwtToken == null)
+                {
+                    throw new InvalidOperationException("Token no disponible o inválido.");
+                }
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken.RawData);
+
+                string url = $"{_apiSettings.BaseUrl}/solicitudes/estados/{Id}/nuevo";
+
+                var jsonContent = new StringContent(
+                    JsonConvert.SerializeObject(estado),
+                    Encoding.UTF8,
+                    "application/json"
+                );
+
+                HttpResponseMessage response = await client.PostAsync(url, jsonContent);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new HttpRequestException($"Error en la solicitud: {response.StatusCode}");
+                }
+
+                // Leer la respuesta si es necesario
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+                // Puedes procesar la respuesta aquí si lo necesitas
+                return;
+            }
+        }
+
+
         async Task<List<Solicitud>> ISolicitudesService.GetSolicitudes()
         {
             using (HttpClient client = new HttpClient())
