@@ -42,9 +42,13 @@
             labelEquipo = new Label();
             button1 = new Button();
             labelId = new Label();
+            panel2 = new Panel();
+            btnNueva = new Button();
+            label1 = new Label();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewSolicitudes).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -55,14 +59,14 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1149, 100);
+            panel1.Size = new Size(1168, 100);
             panel1.TabIndex = 0;
             // 
             // labelUsuario
             // 
             labelUsuario.AutoSize = true;
             labelUsuario.Font = new Font("Verdana", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            labelUsuario.Location = new Point(36, 27);
+            labelUsuario.Location = new Point(12, 43);
             labelUsuario.Name = "labelUsuario";
             labelUsuario.Size = new Size(82, 23);
             labelUsuario.TabIndex = 0;
@@ -74,7 +78,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { usuariosToolStripMenuItem, solicitudesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1149, 24);
+            menuStrip1.Size = new Size(1168, 24);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -119,10 +123,10 @@
             // 
             dataGridViewSolicitudes.BackgroundColor = SystemColors.ControlLightLight;
             dataGridViewSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewSolicitudes.Location = new Point(12, 182);
+            dataGridViewSolicitudes.Location = new Point(12, 206);
             dataGridViewSolicitudes.Name = "dataGridViewSolicitudes";
             dataGridViewSolicitudes.RowHeadersWidth = 51;
-            dataGridViewSolicitudes.Size = new Size(780, 279);
+            dataGridViewSolicitudes.Size = new Size(780, 255);
             dataGridViewSolicitudes.TabIndex = 1;
             dataGridViewSolicitudes.CellContentClick += dataGridViewSolicitudes_CellContentClick;
             dataGridViewSolicitudes.CellEnter += dataGridViewSolicitudes_CellEnter;
@@ -130,7 +134,7 @@
             // labelDepto
             // 
             labelDepto.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelDepto.Location = new Point(829, 218);
+            labelDepto.Location = new Point(14, 34);
             labelDepto.Name = "labelDepto";
             labelDepto.Size = new Size(292, 18);
             labelDepto.TabIndex = 2;
@@ -139,7 +143,7 @@
             // lblUsuario
             // 
             lblUsuario.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUsuario.Location = new Point(829, 266);
+            lblUsuario.Location = new Point(14, 82);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(292, 18);
             lblUsuario.TabIndex = 3;
@@ -148,7 +152,7 @@
             // labelEquipo
             // 
             labelEquipo.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelEquipo.Location = new Point(829, 314);
+            labelEquipo.Location = new Point(14, 130);
             labelEquipo.Name = "labelEquipo";
             labelEquipo.Size = new Size(292, 18);
             labelEquipo.TabIndex = 4;
@@ -156,7 +160,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(829, 378);
+            button1.Location = new Point(14, 194);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 6;
@@ -173,16 +177,46 @@
             labelId.TabIndex = 7;
             labelId.Visible = false;
             // 
+            // panel2
+            // 
+            panel2.BorderStyle = BorderStyle.Fixed3D;
+            panel2.Controls.Add(labelDepto);
+            panel2.Controls.Add(lblUsuario);
+            panel2.Controls.Add(button1);
+            panel2.Controls.Add(labelEquipo);
+            panel2.Location = new Point(817, 182);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(332, 280);
+            panel2.TabIndex = 8;
+            // 
+            // btnNueva
+            // 
+            btnNueva.Location = new Point(12, 116);
+            btnNueva.Name = "btnNueva";
+            btnNueva.Size = new Size(181, 46);
+            btnNueva.TabIndex = 9;
+            btnNueva.Text = "Nueva";
+            btnNueva.UseVisualStyleBackColor = true;
+            btnNueva.Click += btnNueva_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 182);
+            label1.Name = "label1";
+            label1.Size = new Size(120, 15);
+            label1.TabIndex = 10;
+            label1.Text = "Listado de solicitudes";
+            // 
             // frmAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1149, 628);
+            ClientSize = new Size(1168, 628);
+            Controls.Add(label1);
+            Controls.Add(btnNueva);
+            Controls.Add(panel2);
             Controls.Add(labelId);
-            Controls.Add(button1);
-            Controls.Add(labelEquipo);
-            Controls.Add(lblUsuario);
-            Controls.Add(labelDepto);
             Controls.Add(dataGridViewSolicitudes);
             Controls.Add(panel1);
             MainMenuStrip = menuStrip1;
@@ -195,6 +229,7 @@
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewSolicitudes).EndInit();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -215,5 +250,8 @@
         private ToolStripMenuItem listadoToolStripMenuItem;
         private ToolStripMenuItem solicitudesToolStripMenuItem;
         private ToolStripMenuItem historialToolStripMenuItem;
+        private Panel panel2;
+        private Button btnNueva;
+        private Label label1;
     }
 }

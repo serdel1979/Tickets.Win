@@ -69,7 +69,7 @@ namespace TicketApp.Vistas
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private async void button1_Click_1(object sender, EventArgs e)
         {
             if (richTextBoxComentario.Text == "")
             {
@@ -82,11 +82,38 @@ namespace TicketApp.Vistas
                 MessageBox.Show("Debe seleccionar un estado", "Completar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
+
+            progressBarCarga.Visible = true;
+
+            NuevoEstado estado = new NuevoEstado
+            {
+                SolicitudId = id,
+                Fecha = DateTime.Now,
+                Comentario = richTextBoxComentario.Text,
+                EstadoActual = comboBoxEstadosPosibles.Text,
+            };
+            try
+            {
+               await  _solicitudes.NuevoEstado(id, estado);
+                progressBarCarga.Visible = false;
+                MessageBox.Show("Estado actualizado", "Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                progressBarCarga.Visible = false;
+                MessageBox.Show("No se puede actualizar el estado!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

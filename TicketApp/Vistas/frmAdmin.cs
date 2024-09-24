@@ -133,7 +133,7 @@ namespace TicketApp.Vistas
             catch (Exception)
             {
 
-                MessageBox.Show("Debe seleccionar un elemento de la tabla solicitudes","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("No hay nada para ver!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -141,6 +141,12 @@ namespace TicketApp.Vistas
         private void frmAdmin_Activated(object sender, EventArgs e)
         {
             CargarSolicitudes();
+        }
+
+        private void btnNueva_Click(object sender, EventArgs e)
+        {
+            FormNuevo nuevo = new FormNuevo(_tokenService,solicitudesService);
+            nuevo.Show();
         }
     }
 }

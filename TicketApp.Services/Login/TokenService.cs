@@ -47,6 +47,11 @@ namespace TicketApp.Services.Login
             return token?.Claims.FirstOrDefault(c => c.Type == claimType);
         }
 
+        public string GetIdUser()
+        {
+            return _loginResponse.id;
+        }
+
 
     }
 }

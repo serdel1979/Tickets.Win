@@ -45,11 +45,11 @@
             label3 = new Label();
             label2 = new Label();
             panel2 = new Panel();
+            button2 = new Button();
             button1 = new Button();
             richTextBoxComentario = new RichTextBox();
             comboBoxEstadosPosibles = new ComboBox();
             progressBarCarga = new ProgressBar();
-            button2 = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -66,6 +66,7 @@
             // 
             // panel1
             // 
+            panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(labelDescripcion);
             panel1.Controls.Add(labelFecha);
             panel1.Controls.Add(labelEstadoActual);
@@ -215,6 +216,7 @@
             // 
             // panel2
             // 
+            panel2.BorderStyle = BorderStyle.Fixed3D;
             panel2.Controls.Add(button2);
             panel2.Controls.Add(button1);
             panel2.Controls.Add(richTextBoxComentario);
@@ -224,6 +226,17 @@
             panel2.Size = new Size(812, 229);
             panel2.TabIndex = 13;
             panel2.Visible = false;
+            panel2.Paint += panel2_Paint;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(323, 172);
+            button2.Name = "button2";
+            button2.Size = new Size(195, 43);
+            button2.TabIndex = 16;
+            button2.Text = "Cerrar";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -260,16 +273,6 @@
             progressBarCarga.Size = new Size(1518, 23);
             progressBarCarga.Style = ProgressBarStyle.Marquee;
             progressBarCarga.TabIndex = 15;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(323, 172);
-            button2.Name = "button2";
-            button2.Size = new Size(195, 43);
-            button2.TabIndex = 16;
-            button2.Text = "Cerrar";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
             // 
             // FormDetalle
             // 

@@ -22,6 +22,55 @@ namespace TicketApp.Services.Solicitudes
             _apiSettings = apiSettings.Value;
         }
 
+        public async Task CrearSolicitud(NuevaSolicitud solicitud)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                // Obtén el token JWT
+                var jwtToken = _tokenService.ParseToken();
+                if (jwtToken == null)
+                {
+                    throw new InvalidOperationException("Token no disponible o inválido.");
+                }
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken.RawData);
+
+                // Construye la URL
+                string url = $"{_apiSettings.BaseUrl}/solicitudes";
+
+                // Prepara el contenido de la solicitud multipart/form-data
+                using (var content = new MultipartFormDataContent())
+                {
+                    // Añade la imagen binaria
+                    if (solicitud.Imagen != null)
+                    {
+                        var imageContent = new ByteArrayContent(solicitud.Imagen);
+                        imageContent.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+                        content.Add(imageContent, "imagen", "imagen.png");
+                    }
+
+                    // Añade otros campos
+                    content.Add(new StringContent(solicitud.UsuarioId.ToString()), "usuarioId");
+                    content.Add(new StringContent(solicitud.Usuario), "usuario");
+                    content.Add(new StringContent(solicitud.Departamento), "departamento");
+                    content.Add(new StringContent(solicitud.Equipo), "equipo");
+                    content.Add(new StringContent(solicitud.Descripcion), "descripcion");
+                    content.Add(new StringContent(solicitud.Fecha.ToString("o")), "fecha");
+
+                    // Envía la solicitud POST
+                    HttpResponseMessage response = await client.PostAsync(url, content);
+
+                    // Asegúrate de que la respuesta es exitosa
+                    response.EnsureSuccessStatusCode();
+
+                    // Lee la respuesta si es necesario
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    // Manejar la respuesta según tu necesidad
+                }
+            }
+        }
+
+
         public async Task<DetalleSolicitud> GetDetalleSolicitud(int Id)
         {
             using (HttpClient client = new HttpClient())
