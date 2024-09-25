@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TicketApp.Services.Data;
 using TicketApp.Services.Solicitudes;
+using TicketApp.Signal;
+using static TicketApp.Signal.SignalRClient;
 
 namespace TicketApp.Vistas
 {
@@ -17,20 +19,29 @@ namespace TicketApp.Vistas
         private readonly int id;
         private readonly ISolicitudesService _solicitudes;
 
+        private SignalRClient _signalRClient;
+
         private bool load1 = false;
         private bool load2 = false;
 
         public FormDetalle(int Id, ISolicitudesService solicitudes)
         {
             InitializeComponent();
+
+            string urlHub = "https://tickets-dotnet-production.up.railway.app/Hubs/MHub";
+           
+            frmAdmin adminForm = Application.OpenForms.OfType<frmAdmin>().FirstOrDefault();
+            _signalRClient = new SignalRClient(adminForm, urlHub);
+
             id = Id;
             this._solicitudes = solicitudes;
         }
 
-        private void FormDetalle_Load(object sender, EventArgs e)
+        private async void FormDetalle_LoadAsync(object sender, EventArgs e)
         {
             cargaEstadosPosibles();
             cargaDetalle();
+            await _signalRClient.StartAsync();
         }
 
 
@@ -94,9 +105,12 @@ namespace TicketApp.Vistas
             };
             try
             {
-               await  _solicitudes.NuevoEstado(id, estado);
+                await  _solicitudes.NuevoEstado(id, estado);
                 progressBarCarga.Visible = false;
                 MessageBox.Show("Estado actualizado", "Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                var message = new SignalRClient.NewMessage("user", "refrescar", "refresh");
+                await _signalRClient.SendMessageAsync(message);
             }
             catch (Exception)
             {

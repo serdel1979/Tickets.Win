@@ -44,7 +44,8 @@ namespace TicketApp.Signal
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al conectar: {ex.Message}");
+                MessageBox.Show($"Error al conectar: {ex.Message}", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -56,6 +57,20 @@ namespace TicketApp.Signal
 
 
         public record NewMessage(string UserName, string Message, string GroupName);
+
+        public async Task SendMessageAsync(NewMessage message)
+        {
+            try
+            {
+                await connection.InvokeAsync("SendMessage", message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al enviar mensaje: {ex.Message}","Error",MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
 
     }
 }

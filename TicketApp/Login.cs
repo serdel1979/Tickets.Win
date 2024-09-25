@@ -81,7 +81,7 @@ namespace TicketApp
                 else
                 {
                     MessageBox.Show("Inició como usuario común",
-                    "Error",
+                    "Información",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 }

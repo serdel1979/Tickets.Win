@@ -286,7 +286,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "FormDetalle";
             Text = "FormDetalle";
-            Load += FormDetalle_Load;
+            Load += FormDetalle_LoadAsync;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
