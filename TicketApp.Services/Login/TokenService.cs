@@ -53,5 +53,10 @@ namespace TicketApp.Services.Login
         }
 
 
+        public string GetUserName()
+        {
+            return _loginResponse.userName;
+        }
+
     }
 }

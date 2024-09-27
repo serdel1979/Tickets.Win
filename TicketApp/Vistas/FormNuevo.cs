@@ -29,8 +29,10 @@ namespace TicketApp.Vistas
             solicitud = new NuevaSolicitud();
 
             solicitud.UsuarioId = _tokenService.GetIdUser();
+            solicitud.Departamento = _tokenService.GetUserName().ToUpper();
+            txtDepartamento.Text = solicitud.Departamento;
 
-            MessageBox.Show(solicitud.UsuarioId);
+          //  MessageBox.Show(solicitud.UsuarioId);
         }
 
         private void btnCargaImagen_Click(object sender, EventArgs e)
@@ -61,8 +63,27 @@ namespace TicketApp.Vistas
             this.Hide();
         }
 
-        private void btnEnviar_Click(object sender, EventArgs e)
+        private async void btnEnviar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (txtUsuario.Text == "" || txtDepartamento.Text == "" || richTextDescripcion.Text == "")
+                {
+                    MessageBox.Show("No debe dejar campos vacíos","Datos inválidos",MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+                solicitud.Equipo = txtEquipo.Text;
+                solicitud.Usuario = txtUsuario.Text.ToUpper();
+                solicitud.Descripcion = richTextDescripcion.Text.ToUpper();
+                await _solicitudes.CrearSolicitud(solicitud);
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("No se pudo crear la solicitud", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
     }

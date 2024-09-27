@@ -65,6 +65,7 @@
             // 
             // txtDepartamento
             // 
+            txtDepartamento.Enabled = false;
             txtDepartamento.Location = new Point(208, 235);
             txtDepartamento.Name = "txtDepartamento";
             txtDepartamento.Size = new Size(382, 23);
