@@ -29,9 +29,10 @@ namespace TicketApp.Vistas
             InitializeComponent();
 
             string urlHub = "https://tickets-dotnet-production.up.railway.app/Hubs/MHub";
-           
+
             frmAdmin adminForm = Application.OpenForms.OfType<frmAdmin>().FirstOrDefault();
             _signalRClient = new SignalRClient(adminForm, urlHub);
+
 
             id = Id;
             this._solicitudes = solicitudes;
@@ -44,6 +45,11 @@ namespace TicketApp.Vistas
             await _signalRClient.StartAsync();
         }
 
+        private void richToUpper(RichTextBox richText)
+        {
+            richText.Text = richText.Text.ToUpper();
+            richText.SelectionStart = richText.Text.Length;
+        }
 
 
         private async void cargaDetalle()
@@ -55,16 +61,19 @@ namespace TicketApp.Vistas
             labelDescripcion.Text = detalleSolicitud.Descripcion;
             labelEstadoActual.Text = detalleSolicitud.EstadoActual;
             labelFecha.Text = detalleSolicitud.Fecha.ToString("dd/MM/yyyy HH:mm:ss");
+            listBoxEstados.Items.Clear();
             foreach (var desc in detalleSolicitud.Estados)
             {
-                listBoxEstados.Items.Add($"ESTADO: {desc.EstadoActual}, {desc.Comentario} | {desc.Fecha.ToString("dd/MM/yyyy HH:mm:ss")}");
+                listBoxEstados.Items.Add($"ESTADO: {desc.EstadoActual} | {desc.Comentario} | {desc.Fecha.ToString("dd/MM/yyyy HH:mm:ss")}");
             }
+
             load2 = true;
             panel1.Visible = load2;
         }
 
         private async void cargaEstadosPosibles()
         {
+            comboBoxEstadosPosibles.Items.Clear();
             List<EstadoPosible> estados = await _solicitudes.GetEstadoPosibles(id);
             foreach (var estado in estados)
             {
@@ -105,7 +114,14 @@ namespace TicketApp.Vistas
             };
             try
             {
-                await  _solicitudes.NuevoEstado(id, estado);
+                await _solicitudes.NuevoEstado(id, estado);
+
+                cargaDetalle();
+
+                cargaEstadosPosibles();
+
+                await _solicitudes.GetEstadoPosibles(id);
+
                 progressBarCarga.Visible = false;
                 MessageBox.Show("Estado actualizado", "Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -128,6 +144,16 @@ namespace TicketApp.Vistas
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void richTextBoxComentario_TextChanged(object sender, EventArgs e)
+        {
+            richToUpper(sender as RichTextBox);
+        }
+
+        private void listBoxEstados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            label9.Text = listBoxEstados.Text;
         }
     }
 }
