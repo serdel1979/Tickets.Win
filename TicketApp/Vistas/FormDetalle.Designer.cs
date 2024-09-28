@@ -87,7 +87,7 @@
             panel1.Location = new Point(27, 180);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1022, 412);
+            panel1.Size = new Size(1022, 439);
             panel1.TabIndex = 9;
             panel1.Visible = false;
             // 
@@ -96,55 +96,55 @@
             label9.BorderStyle = BorderStyle.Fixed3D;
             label9.Location = new Point(564, 308);
             label9.Name = "label9";
-            label9.Size = new Size(433, 100);
+            label9.Size = new Size(433, 115);
             label9.TabIndex = 23;
             // 
             // labelDescripcion
             // 
-            labelDescripcion.AutoSize = true;
-            labelDescripcion.Location = new Point(257, 336);
+            labelDescripcion.BorderStyle = BorderStyle.Fixed3D;
+            labelDescripcion.Location = new Point(213, 335);
             labelDescripcion.Name = "labelDescripcion";
-            labelDescripcion.Size = new Size(0, 20);
+            labelDescripcion.Size = new Size(301, 88);
             labelDescripcion.TabIndex = 22;
             // 
             // labelFecha
             // 
-            labelFecha.AutoSize = true;
-            labelFecha.Location = new Point(257, 273);
+            labelFecha.BorderStyle = BorderStyle.Fixed3D;
+            labelFecha.Location = new Point(216, 273);
             labelFecha.Name = "labelFecha";
-            labelFecha.Size = new Size(0, 20);
+            labelFecha.Size = new Size(298, 47);
             labelFecha.TabIndex = 21;
             // 
             // labelEstadoActual
             // 
-            labelEstadoActual.AutoSize = true;
-            labelEstadoActual.Location = new Point(257, 209);
+            labelEstadoActual.BorderStyle = BorderStyle.Fixed3D;
+            labelEstadoActual.Location = new Point(216, 209);
             labelEstadoActual.Name = "labelEstadoActual";
-            labelEstadoActual.Size = new Size(0, 20);
+            labelEstadoActual.Size = new Size(298, 53);
             labelEstadoActual.TabIndex = 20;
             // 
             // labelEquipo
             // 
-            labelEquipo.AutoSize = true;
-            labelEquipo.Location = new Point(257, 144);
+            labelEquipo.BorderStyle = BorderStyle.Fixed3D;
+            labelEquipo.Location = new Point(216, 144);
             labelEquipo.Name = "labelEquipo";
-            labelEquipo.Size = new Size(0, 20);
+            labelEquipo.Size = new Size(298, 54);
             labelEquipo.TabIndex = 19;
             // 
             // labelUsuario
             // 
-            labelUsuario.AutoSize = true;
-            labelUsuario.Location = new Point(257, 85);
+            labelUsuario.BorderStyle = BorderStyle.Fixed3D;
+            labelUsuario.Location = new Point(216, 77);
             labelUsuario.Name = "labelUsuario";
-            labelUsuario.Size = new Size(0, 20);
+            labelUsuario.Size = new Size(298, 54);
             labelUsuario.TabIndex = 18;
             // 
             // labelDepartamento
             // 
-            labelDepartamento.AutoSize = true;
-            labelDepartamento.Location = new Point(257, 32);
+            labelDepartamento.BorderStyle = BorderStyle.Fixed3D;
+            labelDepartamento.Location = new Point(216, 9);
             labelDepartamento.Name = "labelDepartamento";
-            labelDepartamento.Size = new Size(0, 20);
+            labelDepartamento.Size = new Size(298, 53);
             labelDepartamento.TabIndex = 17;
             // 
             // listBoxEstados
@@ -235,17 +235,17 @@
             panel2.Controls.Add(button1);
             panel2.Controls.Add(richTextBoxComentario);
             panel2.Controls.Add(comboBoxEstadosPosibles);
-            panel2.Location = new Point(27, 601);
+            panel2.Location = new Point(27, 639);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1022, 304);
+            panel2.Size = new Size(1022, 266);
             panel2.TabIndex = 13;
             panel2.Visible = false;
             panel2.Paint += panel2_Paint;
             // 
             // button2
             // 
-            button2.Location = new Point(369, 229);
+            button2.Location = new Point(368, 190);
             button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
             button2.Size = new Size(223, 57);
@@ -256,7 +256,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(623, 229);
+            button1.Location = new Point(612, 190);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
             button1.Size = new Size(223, 57);
@@ -268,7 +268,7 @@
             // richTextBoxComentario
             // 
             richTextBoxComentario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            richTextBoxComentario.Location = new Point(40, 116);
+            richTextBoxComentario.Location = new Point(40, 95);
             richTextBoxComentario.Margin = new Padding(3, 4, 3, 4);
             richTextBoxComentario.Name = "richTextBoxComentario";
             richTextBoxComentario.Size = new Size(551, 71);
