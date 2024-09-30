@@ -201,6 +201,7 @@
             Controls.Add(btnEnviar);
             Controls.Add(progressBarNuevo);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "FormNuevo";
             Text = "FormNuevo";
             Load += FormNuevo_LoadAsync;
