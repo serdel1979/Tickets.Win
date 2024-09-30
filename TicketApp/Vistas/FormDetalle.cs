@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,8 @@ namespace TicketApp.Vistas
         private readonly ISolicitudesService _solicitudes;
 
         private SignalRClient _signalRClient;
+
+        public string UrlImagen { get; set; } = "";
 
         private bool load1 = false;
         private bool load2 = false;
@@ -61,6 +64,13 @@ namespace TicketApp.Vistas
             labelDescripcion.Text = detalleSolicitud.Descripcion;
             labelEstadoActual.Text = detalleSolicitud.EstadoActual;
             labelFecha.Text = detalleSolicitud.Fecha.ToString("dd/MM/yyyy HH:mm:ss");
+            UrlImagen = detalleSolicitud.UrlImagen;
+
+            if(UrlImagen.IsNullOrEmpty())
+            {
+                btnVerImagen.Visible = false;
+            }
+
             listBoxEstados.Items.Clear();
             foreach (var desc in detalleSolicitud.Estados)
             {
@@ -154,6 +164,12 @@ namespace TicketApp.Vistas
         private void listBoxEstados_SelectedIndexChanged(object sender, EventArgs e)
         {
             label9.Text = listBoxEstados.Text;
+        }
+
+        private void btnVerImagen_Click(object sender, EventArgs e)
+        {
+            Imagen frmImagen = new Imagen(UrlImagen);
+            frmImagen.Show();
         }
     }
 }

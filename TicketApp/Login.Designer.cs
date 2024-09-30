@@ -102,6 +102,7 @@
             Controls.Add(labelPassword);
             Controls.Add(txtUser);
             Controls.Add(labelUsuario);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Login";

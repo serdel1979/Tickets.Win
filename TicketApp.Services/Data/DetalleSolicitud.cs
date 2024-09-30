@@ -13,6 +13,7 @@ namespace TicketApp.Services.Data
         public string Descripcion { get; set; }
         public string Equipo { get; set; }
         public string EstadoActual { get; set; }
+        public  string UrlImagen { get; set; }
         public DateTime Fecha { get; set; }
         public List<Descripcion> Estados { get; set; }
     }
