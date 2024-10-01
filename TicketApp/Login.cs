@@ -80,10 +80,10 @@ namespace TicketApp
                 }
                 else
                 {
-                    MessageBox.Show("Inició como usuario común",
-                    "Información",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                   var panelUsuarios = new frmPanelusrs(_tokenService, solicitudesService);
+                    panelUsuarios.Show();
+                    progressBarLogin.Visible = false;
+                    this.Hide();
                 }
 
 

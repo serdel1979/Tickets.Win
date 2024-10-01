@@ -33,6 +33,9 @@
             btnEnviar = new Button();
             btnCerrar = new Button();
             panel1 = new Panel();
+            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
             btnCargaImagen = new Button();
             label4 = new Label();
             label3 = new Label();
@@ -87,6 +90,9 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(button3);
+            panel1.Controls.Add(button2);
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(btnCargaImagen);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
@@ -102,6 +108,37 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1008, 484);
             panel1.TabIndex = 14;
+            panel1.Paint += panel1_Paint;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(759, 100);
+            button3.Name = "button3";
+            button3.Size = new Size(62, 21);
+            button3.TabIndex = 24;
+            button3.Text = "Reset";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(679, 100);
+            button2.Name = "button2";
+            button2.Size = new Size(62, 21);
+            button2.TabIndex = 23;
+            button2.Text = "Zoom -";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(598, 100);
+            button1.Name = "button1";
+            button1.Size = new Size(62, 21);
+            button1.TabIndex = 22;
+            button1.Text = "Zoom +";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // btnCargaImagen
             // 
@@ -151,11 +188,18 @@
             // 
             // pictureBoxImagen
             // 
-            pictureBoxImagen.Location = new Point(598, 98);
+            pictureBoxImagen.BorderStyle = BorderStyle.Fixed3D;
+            pictureBoxImagen.Location = new Point(598, 135);
             pictureBoxImagen.Name = "pictureBoxImagen";
-            pictureBoxImagen.Size = new Size(292, 315);
+            pictureBoxImagen.Size = new Size(343, 330);
             pictureBoxImagen.TabIndex = 16;
             pictureBoxImagen.TabStop = false;
+            pictureBoxImagen.DragDrop += pictureBoxImagen_DragDrop;
+            pictureBoxImagen.DragEnter += pictureBoxImagen_DragEnter;
+            pictureBoxImagen.Paint += pictureBoxImagen_Paint;
+            pictureBoxImagen.MouseDown += pictureBoxImagen_MouseDown;
+            pictureBoxImagen.MouseMove += pictureBoxImagen_MouseMove;
+            pictureBoxImagen.MouseUp += pictureBoxImagen_MouseUp;
             // 
             // richTextDescripcion
             // 
@@ -181,7 +225,6 @@
             txtDepartamento.Name = "txtDepartamento";
             txtDepartamento.Size = new Size(382, 23);
             txtDepartamento.TabIndex = 13;
-            txtDepartamento.TextChanged += txtDepartamento_TextChanged;
             // 
             // txtUsuario
             // 
@@ -229,5 +272,8 @@
         private TextBox txtEquipo;
         private TextBox txtDepartamento;
         private TextBox txtUsuario;
+        private Button button2;
+        private Button button1;
+        private Button button3;
     }
 }

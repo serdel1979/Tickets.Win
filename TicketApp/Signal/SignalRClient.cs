@@ -52,8 +52,23 @@ namespace TicketApp.Signal
 
         private void RefreshTable(NewMessage message)
         {
-            (form as frmAdmin).CargarSolicitudes();
+            if (form is frmAdmin adminForm)
+            {
+                // Si el formulario es frmAdmin, llama al método CargarSolicitudes de frmAdmin
+                adminForm.CargarSolicitudes();
+            }
+            else if (form is frmPanelusrs panelUsrsForm)
+            {
+                // Si el formulario es frmPanelusrs, llama al método que maneje las solicitudes en frmPanelusrs
+                panelUsrsForm.CargarSolicitudes(); // Asegúrate de que frmPanelusrs tenga un método similar
+            }
+            else
+            {
+                // Manejo en caso de que el formulario no sea ninguno de los dos
+                MessageBox.Show("Formulario no reconocido para actualizar las solicitudes.");
+            }
         }
+
 
 
         public record NewMessage(string UserName, string Message, string GroupName);
