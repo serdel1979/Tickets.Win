@@ -132,6 +132,36 @@ namespace TicketApp.Services.Solicitudes
             }
         }
 
+        public async Task<List<Solicitud>> GetMisSolicitud()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                // Obtén el token utilizando el servicio de token
+                var jwtToken = _tokenService.ParseToken();
+                if (jwtToken == null)
+                {
+                    throw new InvalidOperationException("Token no disponible o inválido.");
+                }
+
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken.RawData);
+
+                // Construye la URL
+                string url = $"{_apiSettings.BaseUrl}/solicitudes/missolicitudes";
+
+                // Realiza la solicitud GET
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // Asegúrate de que la respuesta es exitosa
+                response.EnsureSuccessStatusCode();
+
+                // Lee y deserializa el contenido de la respuesta
+                string responseBody = await response.Content.ReadAsStringAsync();
+                List<Solicitud> solicitudes = JsonConvert.DeserializeObject<List<Solicitud>>(responseBody);
+
+                return solicitudes;
+            }
+        }
 
         public async Task NuevoEstado(int Id, NuevoEstado estado)
         {
@@ -199,6 +229,7 @@ namespace TicketApp.Services.Solicitudes
                 return solicitudes;
             }
         }
+
 
 
     }

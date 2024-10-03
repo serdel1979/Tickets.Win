@@ -37,11 +37,6 @@ namespace TicketApp.Vistas
             if (loginResponse != null)
             {
 
-                string jwtToken = loginResponse.token;
-                string userName = loginResponse.userName;
-                string email = loginResponse.email;
-                int claims = loginResponse.claims;
-
 
                 labelUsuario.Text = loginResponse.userName;
 

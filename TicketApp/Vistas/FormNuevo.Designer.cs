@@ -176,11 +176,12 @@
             label2.Size = new Size(83, 15);
             label2.TabIndex = 18;
             label2.Text = "Departamento";
+            label2.Visible = false;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(120, 70);
+            label1.Location = new Point(120, 100);
             label1.Name = "label1";
             label1.Size = new Size(47, 15);
             label1.TabIndex = 17;
@@ -225,10 +226,11 @@
             txtDepartamento.Name = "txtDepartamento";
             txtDepartamento.Size = new Size(382, 23);
             txtDepartamento.TabIndex = 13;
+            txtDepartamento.Visible = false;
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(120, 98);
+            txtUsuario.Location = new Point(120, 128);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(382, 23);
             txtUsuario.TabIndex = 12;

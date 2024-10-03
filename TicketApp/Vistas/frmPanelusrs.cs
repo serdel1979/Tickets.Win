@@ -30,7 +30,17 @@ namespace TicketApp.Vistas
 
             this._tokenService = tokenService;
             this.solicitudesService = solicitudesService;
-            labelUsuario.Text = _tokenService.GetUserName();
+
+            var loginResponse = _tokenService.LoginResponse;
+
+            if (loginResponse != null)
+            {
+
+                labelUsuario.Text = loginResponse.userName;
+
+                CargarSolicitudes();
+
+            }
         }
 
         private void frmPanelusrs_Load(object sender, EventArgs e)
