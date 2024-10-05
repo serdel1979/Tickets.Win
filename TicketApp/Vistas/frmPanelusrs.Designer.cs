@@ -33,6 +33,7 @@
             menuStrip1 = new MenuStrip();
             solicitudesToolStripMenuItem = new ToolStripMenuItem();
             historialToolStripMenuItem = new ToolStripMenuItem();
+            splitContainer2 = new SplitContainer();
             dataGridViewSolicitudes = new DataGridView();
             panel2 = new Panel();
             label1 = new Label();
@@ -40,21 +41,20 @@
             label9 = new Label();
             listBoxEstados = new ListBox();
             button1 = new Button();
-            splitContainer2 = new SplitContainer();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewSolicitudes).BeginInit();
-            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
             splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewSolicitudes).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(labelUsuario);
             panel1.Controls.Add(menuStrip1);
-            panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
@@ -96,6 +96,15 @@
             historialToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.H;
             historialToolStripMenuItem.Size = new Size(201, 26);
             historialToolStripMenuItem.Text = "Historial";
+            // 
+            // splitContainer2
+            // 
+            splitContainer2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            splitContainer2.Location = new Point(0, 158);
+            splitContainer2.Name = "splitContainer2";
+            splitContainer2.Size = new Size(1466, 565);
+            splitContainer2.SplitterDistance = 626;
+            splitContainer2.TabIndex = 6;
             // 
             // dataGridViewSolicitudes
             // 
@@ -171,38 +180,30 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // splitContainer2
-            // 
-            splitContainer2.Dock = DockStyle.Fill;
-            splitContainer2.Location = new Point(0, 0);
-            splitContainer2.Name = "splitContainer2";
-            splitContainer2.Size = new Size(1466, 666);
-            splitContainer2.SplitterDistance = 485;
-            splitContainer2.TabIndex = 6;
-            // 
             // frmPanelusrs
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1466, 666);
+            ClientSize = new Size(1466, 763);
+            Controls.Add(splitContainer2);
             Controls.Add(button1);
             Controls.Add(panel2);
             Controls.Add(dataGridViewSolicitudes);
             Controls.Add(panel1);
-            Controls.Add(splitContainer2);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmPanelusrs";
             Text = "frmPanelusrs";
+            FormClosing += frmPanelusrs_FormClosing;
             Load += frmPanelusrs_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewSolicitudes).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
-            splitContainer2.ResumeLayout(false);
             ResumeLayout(false);
         }
 

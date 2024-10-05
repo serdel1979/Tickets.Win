@@ -184,6 +184,9 @@ namespace TicketApp.Vistas
             label9.Text = listBoxEstados.Text;
         }
 
-
+        private void frmPanelusrs_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

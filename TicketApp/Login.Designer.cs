@@ -39,43 +39,46 @@
             // labelUsuario
             // 
             labelUsuario.AutoSize = true;
-            labelUsuario.Location = new Point(28, 89);
+            labelUsuario.Location = new Point(32, 119);
             labelUsuario.Name = "labelUsuario";
-            labelUsuario.Size = new Size(60, 15);
+            labelUsuario.Size = new Size(75, 20);
             labelUsuario.TabIndex = 0;
             labelUsuario.Text = "Usuario(*)";
             // 
             // txtUser
             // 
-            txtUser.Location = new Point(106, 86);
+            txtUser.Location = new Point(121, 115);
+            txtUser.Margin = new Padding(3, 4, 3, 4);
             txtUser.Name = "txtUser";
-            txtUser.Size = new Size(214, 23);
+            txtUser.Size = new Size(244, 27);
             txtUser.TabIndex = 1;
             txtUser.KeyPress += txtUser_KeyPress;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(106, 146);
+            txtPassword.Location = new Point(121, 195);
+            txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(214, 23);
+            txtPassword.Size = new Size(244, 27);
             txtPassword.TabIndex = 3;
             txtPassword.KeyPress += txtPassword_KeyPress;
             // 
             // labelPassword
             // 
             labelPassword.AutoSize = true;
-            labelPassword.Location = new Point(28, 146);
+            labelPassword.Location = new Point(32, 195);
             labelPassword.Name = "labelPassword";
-            labelPassword.Size = new Size(49, 15);
+            labelPassword.Size = new Size(61, 20);
             labelPassword.TabIndex = 2;
             labelPassword.Text = "Clave(*)";
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(132, 213);
+            btnLogin.Location = new Point(151, 284);
+            btnLogin.Margin = new Padding(3, 4, 3, 4);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(137, 23);
+            btnLogin.Size = new Size(157, 31);
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Ingresar";
             btnLogin.UseVisualStyleBackColor = true;
@@ -83,19 +86,20 @@
             // 
             // progressBarLogin
             // 
-            progressBarLogin.Location = new Point(-1, 283);
+            progressBarLogin.Location = new Point(-1, 377);
+            progressBarLogin.Margin = new Padding(3, 4, 3, 4);
             progressBarLogin.MarqueeAnimationSpeed = 1;
             progressBarLogin.Name = "progressBarLogin";
-            progressBarLogin.Size = new Size(398, 23);
+            progressBarLogin.Size = new Size(455, 31);
             progressBarLogin.Style = ProgressBarStyle.Marquee;
             progressBarLogin.TabIndex = 5;
             progressBarLogin.Visible = false;
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(398, 306);
+            ClientSize = new Size(455, 408);
             Controls.Add(progressBarLogin);
             Controls.Add(btnLogin);
             Controls.Add(txtPassword);
@@ -103,11 +107,13 @@
             Controls.Add(txtUser);
             Controls.Add(labelUsuario);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
+            FormClosing += Login_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }

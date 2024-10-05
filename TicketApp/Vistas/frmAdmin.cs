@@ -67,7 +67,7 @@ namespace TicketApp.Vistas
             dataGridViewSolicitudes.Columns["Id"].Visible = false;
             dataGridViewSolicitudes.Columns["UsuarioId"].Visible = false;
             dataGridViewSolicitudes.Columns["ContadorMensajes"].Visible = false;
-           
+
             ApplyConditionalFormatting();
 
         }
@@ -141,8 +141,13 @@ namespace TicketApp.Vistas
 
         private void btnNueva_Click(object sender, EventArgs e)
         {
-            FormNuevo nuevo = new FormNuevo(_tokenService,solicitudesService);
+            FormNuevo nuevo = new FormNuevo(_tokenService, solicitudesService);
             nuevo.Show();
+        }
+
+        private void frmAdmin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

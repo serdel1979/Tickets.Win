@@ -80,7 +80,7 @@ namespace TicketApp
                 }
                 else
                 {
-                   var panelUsuarios = new frmPanelusrs(_tokenService, solicitudesService);
+                    var panelUsuarios = new frmPanelusrs(_tokenService, solicitudesService);
                     panelUsuarios.Show();
                     progressBarLogin.Visible = false;
                     this.Hide();
@@ -108,6 +108,11 @@ namespace TicketApp
                 e.Handled = true;
                 Ingresar();
             }
+        }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
