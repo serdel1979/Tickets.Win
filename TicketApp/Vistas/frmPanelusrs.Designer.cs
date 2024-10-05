@@ -35,15 +35,18 @@
             historialToolStripMenuItem = new ToolStripMenuItem();
             dataGridViewSolicitudes = new DataGridView();
             panel2 = new Panel();
+            label1 = new Label();
             progressBarEstados = new ProgressBar();
             label9 = new Label();
             listBoxEstados = new ListBox();
             button1 = new Button();
-            label1 = new Label();
+            splitContainer2 = new SplitContainer();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewSolicitudes).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -55,7 +58,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1466, 133);
+            panel1.Size = new Size(1466, 151);
             panel1.TabIndex = 1;
             // 
             // labelUsuario
@@ -97,11 +100,11 @@
             // dataGridViewSolicitudes
             // 
             dataGridViewSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewSolicitudes.Location = new Point(21, 239);
+            dataGridViewSolicitudes.Location = new Point(14, 239);
             dataGridViewSolicitudes.Margin = new Padding(3, 4, 3, 4);
             dataGridViewSolicitudes.Name = "dataGridViewSolicitudes";
             dataGridViewSolicitudes.RowHeadersWidth = 51;
-            dataGridViewSolicitudes.Size = new Size(719, 439);
+            dataGridViewSolicitudes.Size = new Size(682, 439);
             dataGridViewSolicitudes.TabIndex = 2;
             dataGridViewSolicitudes.CellContentClick += dataGridViewSolicitudes_CellContentClick;
             dataGridViewSolicitudes.CellEnter += dataGridViewSolicitudes_CellEnter;
@@ -116,15 +119,25 @@
             panel2.Location = new Point(755, 239);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(653, 439);
+            panel2.Size = new Size(699, 439);
             panel2.TabIndex = 3;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(106, 49);
+            label1.Name = "label1";
+            label1.Size = new Size(255, 20);
+            label1.TabIndex = 27;
+            label1.Text = "Estados de la solicitud seleccionada";
             // 
             // progressBarEstados
             // 
             progressBarEstados.Location = new Point(3, 3);
             progressBarEstados.MarqueeAnimationSpeed = 10;
             progressBarEstados.Name = "progressBarEstados";
-            progressBarEstados.Size = new Size(643, 29);
+            progressBarEstados.Size = new Size(689, 29);
             progressBarEstados.Style = ProgressBarStyle.Marquee;
             progressBarEstados.TabIndex = 26;
             progressBarEstados.Visible = false;
@@ -134,7 +147,7 @@
             label9.BorderStyle = BorderStyle.Fixed3D;
             label9.Location = new Point(106, 302);
             label9.Name = "label9";
-            label9.Size = new Size(437, 115);
+            label9.Size = new Size(479, 115);
             label9.TabIndex = 25;
             // 
             // listBoxEstados
@@ -143,7 +156,7 @@
             listBoxEstados.Location = new Point(106, 85);
             listBoxEstados.Margin = new Padding(3, 4, 3, 4);
             listBoxEstados.Name = "listBoxEstados";
-            listBoxEstados.Size = new Size(436, 204);
+            listBoxEstados.Size = new Size(479, 204);
             listBoxEstados.TabIndex = 24;
             listBoxEstados.SelectedIndexChanged += listBoxEstados_SelectedIndexChanged;
             // 
@@ -158,25 +171,25 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // label1
+            // splitContainer2
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(106, 49);
-            label1.Name = "label1";
-            label1.Size = new Size(255, 20);
-            label1.TabIndex = 27;
-            label1.Text = "Estados de la solicitud seleccionada";
+            splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.Location = new Point(0, 0);
+            splitContainer2.Name = "splitContainer2";
+            splitContainer2.Size = new Size(1466, 666);
+            splitContainer2.SplitterDistance = 485;
+            splitContainer2.TabIndex = 6;
             // 
             // frmPanelusrs
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1466, 848);
+            ClientSize = new Size(1466, 666);
             Controls.Add(button1);
             Controls.Add(panel2);
             Controls.Add(dataGridViewSolicitudes);
             Controls.Add(panel1);
+            Controls.Add(splitContainer2);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmPanelusrs";
             Text = "frmPanelusrs";
@@ -188,6 +201,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewSolicitudes).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -205,5 +220,6 @@
         private ListBox listBoxEstados;
         private ProgressBar progressBarEstados;
         private Label label1;
+        private SplitContainer splitContainer2;
     }
 }

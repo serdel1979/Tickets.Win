@@ -30,6 +30,44 @@ namespace TicketApp.Vistas
         public frmPanelusrs(TokenService tokenService, ISolicitudesService solicitudesService)
         {
             InitializeComponent();
+            panel1.Dock = DockStyle.Fill;
+            panel1.Dock = DockStyle.Top; // Hace que el panel se adhiera a la parte superior
+
+            // Configura el SplitContainer para que ocupe el resto del espacio debajo del panel
+            splitContainer2.Dock = DockStyle.Fill; // Ocupa todo el espacio restante
+
+            // Ajusta el tamaño del SplitContainer debajo del Panel1
+            splitContainer2.Location = new Point(0, panel1.Height); // Coloca el SplitContainer justo debajo del Panel1
+            splitContainer2.Height = this.ClientSize.Height - panel1.Height;
+
+            splitContainer2.Panel1.Controls.Add(dataGridViewSolicitudes);
+            splitContainer2.Panel1.Controls.Add(button1);
+
+            // Coloca el Panel en Panel2
+            panel2.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+            panel2.Location = new Point(0, 0); // Alinear con el borde izquierdo y superior
+            panel2.Width = splitContainer2.Panel2.Width; // Ajusta el ancho para ocupar todo el espacio horizontal si es necesario
+
+            panel2.Dock = DockStyle.Fill;
+            splitContainer2.Panel2.Controls.Add(panel2);
+
+            // Configura el SplitContainer
+            splitContainer2.Dock = DockStyle.Fill; // Ocupa todo el formulario
+            splitContainer2.SplitterWidth = 5;     // Define el ancho del separador
+            splitContainer2.IsSplitterFixed = false; // Permite que el usuario mueva el separador
+
+
+            // Coloca el DataGridView en Panel1 y ocupa todo el espacio
+            dataGridViewSolicitudes.Dock = DockStyle.Fill;
+            splitContainer2.Panel1.Controls.Add(dataGridViewSolicitudes);
+
+            // Coloca el botón en la parte superior
+            button1.Dock = DockStyle.Top;
+            splitContainer2.Panel1.Controls.Add(button1);
+
+            splitContainer2.Panel1MinSize = 100;
+            splitContainer2.Panel2MinSize = 100;
+
 
             string urlHub = "https://tickets-dotnet-production.up.railway.app/Hubs/MHub";
             signalRClient = new SignalRClient(this, urlHub);
@@ -145,5 +183,7 @@ namespace TicketApp.Vistas
         {
             label9.Text = listBoxEstados.Text;
         }
+
+
     }
 }
