@@ -67,6 +67,7 @@ namespace TicketApp.Vistas
             dataGridViewSolicitudes.Columns["Id"].Visible = false;
             dataGridViewSolicitudes.Columns["UsuarioId"].Visible = false;
             dataGridViewSolicitudes.Columns["ContadorMensajes"].Visible = false;
+           
             ApplyConditionalFormatting();
 
         }

@@ -66,7 +66,7 @@ namespace TicketApp.Vistas
             labelFecha.Text = detalleSolicitud.Fecha.ToString("dd/MM/yyyy HH:mm:ss");
             UrlImagen = detalleSolicitud.UrlImagen;
 
-            if(UrlImagen.IsNullOrEmpty())
+            if (UrlImagen.IsNullOrEmpty())
             {
                 btnVerImagen.Visible = false;
             }
@@ -170,6 +170,11 @@ namespace TicketApp.Vistas
         {
             Imagen frmImagen = new Imagen(UrlImagen);
             frmImagen.Show();
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

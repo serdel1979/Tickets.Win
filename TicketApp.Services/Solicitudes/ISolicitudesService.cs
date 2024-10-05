@@ -16,6 +16,8 @@ namespace TicketApp.Services.Solicitudes
         Task<List<EstadoPosible>> GetEstadoPosibles(int Id);
         Task<DetalleSolicitud> GetDetalleSolicitud(int Id);
 
+        Task<DetalleSolicitud> GetMiSolicitud(int Id);
+
         Task NuevoEstado(int Id, NuevoEstado estado);
 
         Task CrearSolicitud(NuevaSolicitud nuevaSolicitud);
