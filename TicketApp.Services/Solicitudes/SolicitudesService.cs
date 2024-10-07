@@ -70,6 +70,36 @@ namespace TicketApp.Services.Solicitudes
             }
         }
 
+        public async Task<List<Solicitud>> GetAllSolicitudes()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                // Obtén el token utilizando el servicio de token
+                var jwtToken = _tokenService.ParseToken();
+                if (jwtToken == null)
+                {
+                    throw new InvalidOperationException("Token no disponible o inválido.");
+                }
+
+                // Agrega el token al encabezado de la solicitud
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken.RawData);
+
+                // Construye la URL
+                string url = $"{_apiSettings.BaseUrl}/solicitudes/historial";
+
+                // Realiza la solicitud GET
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                // Asegúrate de que la respuesta es exitosa
+                response.EnsureSuccessStatusCode();
+
+                // Lee y deserializa el contenido de la respuesta
+                string responseBody = await response.Content.ReadAsStringAsync();
+                List<Solicitud> solicitudes = JsonConvert.DeserializeObject<List<Solicitud>>(responseBody);
+
+                return solicitudes;
+            }
+        }
 
         public async Task<DetalleSolicitud> GetDetalleSolicitud(int Id)
         {

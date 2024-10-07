@@ -37,6 +37,8 @@ namespace TicketApp.Vistas
         {
             InitializeComponent();
 
+
+
             string urlHub = "https://tickets-dotnet-production.up.railway.app/Hubs/MHub";
 
             // Verifica si frmAdmin está abierto
@@ -213,6 +215,8 @@ namespace TicketApp.Vistas
             zoomFactor *= 1.2f;  // Aumentar el factor de zoom
             pictureBoxImagen.Invalidate();  // Redibujar el PictureBox con el nuevo zoom
         }
+
+
 
         private void button3_Click(object sender, EventArgs e)
         {

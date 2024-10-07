@@ -12,6 +12,7 @@ namespace TicketApp.Services.Solicitudes
         //https://tickets-dotnet-production.up.railway.app/api/solicitudes
         Task<List<Solicitud>> GetSolicitudes();
 
+        Task<List<Solicitud>> GetAllSolicitudes();
         Task<List<Solicitud>> GetMisSolicitud();
         Task<List<EstadoPosible>> GetEstadoPosibles(int Id);
         Task<DetalleSolicitud> GetDetalleSolicitud(int Id);

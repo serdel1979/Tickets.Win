@@ -149,5 +149,11 @@ namespace TicketApp.Vistas
         {
             Application.Exit();
         }
+
+        private void historialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var historial = new Historial(_tokenService, solicitudesService);
+            historial.Show();   
+        }
     }
 }
