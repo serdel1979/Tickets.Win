@@ -248,7 +248,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "FormNuevo";
-            Text = "FormNuevo";
+            Text = "Nuevo";
             Load += FormNuevo_LoadAsync;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

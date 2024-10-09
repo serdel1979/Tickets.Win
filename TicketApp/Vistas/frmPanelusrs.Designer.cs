@@ -189,7 +189,7 @@
             Controls.Add(dataGridViewSolicitudes);
             Controls.Add(panel1);
             Name = "frmPanelusrs";
-            Text = "frmPanelusrs";
+            Text = "Panel";
             FormClosing += frmPanelusrs_FormClosing;
             Load += frmPanelusrs_Load;
             panel1.ResumeLayout(false);
