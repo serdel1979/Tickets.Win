@@ -33,8 +33,10 @@
             progressBarSolicitudes = new ProgressBar();
             textBoxFilter = new TextBox();
             dataGridViewSolicitudes = new DataGridView();
+            progressBarEstados = new ProgressBar();
+            labelId = new Label();
             btnVerImagen = new Button();
-            label9 = new Label();
+            labelDetalleEstado = new Label();
             labelDescripcion = new Label();
             labelFecha = new Label();
             labelEstadoActual = new Label();
@@ -70,8 +72,10 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(progressBarEstados);
+            splitContainer1.Panel2.Controls.Add(labelId);
             splitContainer1.Panel2.Controls.Add(btnVerImagen);
-            splitContainer1.Panel2.Controls.Add(label9);
+            splitContainer1.Panel2.Controls.Add(labelDetalleEstado);
             splitContainer1.Panel2.Controls.Add(labelDescripcion);
             splitContainer1.Panel2.Controls.Add(labelFecha);
             splitContainer1.Panel2.Controls.Add(labelEstadoActual);
@@ -86,8 +90,8 @@
             splitContainer1.Panel2.Controls.Add(label4);
             splitContainer1.Panel2.Controls.Add(label3);
             splitContainer1.Panel2.Controls.Add(label2);
-            splitContainer1.Size = new Size(1243, 639);
-            splitContainer1.SplitterDistance = 709;
+            splitContainer1.Size = new Size(1156, 639);
+            splitContainer1.SplitterDistance = 659;
             splitContainer1.SplitterWidth = 5;
             splitContainer1.TabIndex = 0;
             // 
@@ -98,7 +102,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(709, 98);
+            panel1.Size = new Size(659, 98);
             panel1.TabIndex = 1;
             // 
             // progressBarSolicitudes
@@ -107,7 +111,7 @@
             progressBarSolicitudes.Location = new Point(3, 3);
             progressBarSolicitudes.MarqueeAnimationSpeed = 10;
             progressBarSolicitudes.Name = "progressBarSolicitudes";
-            progressBarSolicitudes.Size = new Size(706, 23);
+            progressBarSolicitudes.Size = new Size(656, 23);
             progressBarSolicitudes.Style = ProgressBarStyle.Marquee;
             progressBarSolicitudes.TabIndex = 1;
             progressBarSolicitudes.Visible = false;
@@ -117,7 +121,7 @@
             textBoxFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxFilter.Location = new Point(3, 72);
             textBoxFilter.Name = "textBoxFilter";
-            textBoxFilter.Size = new Size(704, 23);
+            textBoxFilter.Size = new Size(654, 23);
             textBoxFilter.TabIndex = 0;
             textBoxFilter.Text = "Filtrar";
             textBoxFilter.TextChanged += textBoxFilter_TextChanged;
@@ -128,8 +132,29 @@
             dataGridViewSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewSolicitudes.Location = new Point(0, 104);
             dataGridViewSolicitudes.Name = "dataGridViewSolicitudes";
-            dataGridViewSolicitudes.Size = new Size(709, 440);
+            dataGridViewSolicitudes.Size = new Size(659, 440);
             dataGridViewSolicitudes.TabIndex = 0;
+            dataGridViewSolicitudes.CellContentClick += dataGridViewSolicitudes_CellContentClick;
+            dataGridViewSolicitudes.CellEnter += dataGridViewSolicitudes_CellEnter;
+            // 
+            // progressBarEstados
+            // 
+            progressBarEstados.Location = new Point(182, 358);
+            progressBarEstados.MarqueeAnimationSpeed = 10;
+            progressBarEstados.Name = "progressBarEstados";
+            progressBarEstados.Size = new Size(251, 23);
+            progressBarEstados.Style = ProgressBarStyle.Marquee;
+            progressBarEstados.TabIndex = 42;
+            progressBarEstados.Visible = false;
+            // 
+            // labelId
+            // 
+            labelId.AutoSize = true;
+            labelId.Location = new Point(58, 11);
+            labelId.Name = "labelId";
+            labelId.Size = new Size(0, 15);
+            labelId.TabIndex = 41;
+            labelId.Visible = false;
             // 
             // btnVerImagen
             // 
@@ -139,14 +164,15 @@
             btnVerImagen.TabIndex = 40;
             btnVerImagen.Text = "Imagen";
             btnVerImagen.UseVisualStyleBackColor = true;
+            btnVerImagen.Click += btnVerImagen_Click;
             // 
-            // label9
+            // labelDetalleEstado
             // 
-            label9.BorderStyle = BorderStyle.Fixed3D;
-            label9.Location = new Point(51, 557);
-            label9.Name = "label9";
-            label9.Size = new Size(382, 73);
-            label9.TabIndex = 39;
+            labelDetalleEstado.BorderStyle = BorderStyle.Fixed3D;
+            labelDetalleEstado.Location = new Point(51, 532);
+            labelDetalleEstado.Name = "labelDetalleEstado";
+            labelDetalleEstado.Size = new Size(382, 98);
+            labelDetalleEstado.TabIndex = 39;
             // 
             // labelDescripcion
             // 
@@ -204,6 +230,7 @@
             listBoxEstados.Name = "listBoxEstados";
             listBoxEstados.Size = new Size(382, 139);
             listBoxEstados.TabIndex = 32;
+            listBoxEstados.SelectedIndexChanged += listBoxEstados_SelectedIndexChanged;
             // 
             // label8
             // 
@@ -279,7 +306,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1243, 639);
+            ClientSize = new Size(1156, 639);
             Controls.Add(splitContainer1);
             Name = "Historial";
             Text = "Historial";
@@ -303,7 +330,7 @@
         private TextBox textBoxFilter;
         private ProgressBar progressBarSolicitudes;
         private Button btnVerImagen;
-        private Label label9;
+        private Label labelDetalleEstado;
         private Label labelDescripcion;
         private Label labelFecha;
         private Label labelEstadoActual;
@@ -318,5 +345,7 @@
         private Label label4;
         private Label label3;
         private Label label2;
+        private Label labelId;
+        private ProgressBar progressBarEstados;
     }
 }

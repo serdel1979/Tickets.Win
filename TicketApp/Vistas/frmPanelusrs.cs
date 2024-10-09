@@ -59,7 +59,7 @@ namespace TicketApp.Vistas
 
             // Coloca el DataGridView en Panel1 y ocupa todo el espacio
             dataGridViewSolicitudes.Dock = DockStyle.Fill;
-            splitContainer2.Panel1.Controls.Add(dataGridViewSolicitudes);   
+            splitContainer2.Panel1.Controls.Add(dataGridViewSolicitudes);
 
             // Coloca el botón en la parte superior
             button1.Dock = DockStyle.Top;
@@ -187,6 +187,12 @@ namespace TicketApp.Vistas
         private void frmPanelusrs_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void historialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var historial = new Historial(_tokenService, solicitudesService);
+            historial.Show();
         }
     }
 }

@@ -84,8 +84,17 @@ namespace TicketApp.Services.Solicitudes
                 // Agrega el token al encabezado de la solicitud
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken.RawData);
 
-                // Construye la URL
-                string url = $"{_apiSettings.BaseUrl}/solicitudes/historial";
+                string url;
+
+                if (jwtToken.Claims.Count() == 3)
+                {
+                   url = $"{_apiSettings.BaseUrl}/solicitudes/historial";
+                }
+                else
+                {
+                    url = $"{_apiSettings.BaseUrl}/solicitudes/mihistorial";
+                }
+               
 
                 // Realiza la solicitud GET
                 HttpResponseMessage response = await client.GetAsync(url);
@@ -113,10 +122,18 @@ namespace TicketApp.Services.Solicitudes
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken.RawData);
 
-                // Construye la URL
-                string url = $"{_apiSettings.BaseUrl}/solicitudes/{Id}";
+                string url;
 
-                // Realiza la solicitud GET
+                if (jwtToken.Claims.Count() == 3)
+                {
+                    url = $"{_apiSettings.BaseUrl}/solicitudes/{Id}";
+                }
+                else
+                {
+                    url = $"{_apiSettings.BaseUrl}/solicitudes/getmisolicitud/{Id}";
+                }
+
+
                 HttpResponseMessage response = await client.GetAsync(url);
 
                 // Asegúrate de que la respuesta es exitosa

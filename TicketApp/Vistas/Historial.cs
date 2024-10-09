@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +24,8 @@ namespace TicketApp.Vistas
 
         List<Solicitud> solicitudes;  // Lista de datos (puedes usar el tipo adecuado)
 
+        DetalleSolicitud detalleSolicitud;
+
         public Historial(TokenService tokenService, ISolicitudesService solicitudesService)
         {
             InitializeComponent();
@@ -36,7 +40,7 @@ namespace TicketApp.Vistas
             progressBarSolicitudes.Visible = true;
             try
             {
-                // Obtener las solicitudes desde el servicio
+
                 solicitudes = await solicitudesService.GetAllSolicitudes();
 
                 // Cargar los datos en el DataGridView
@@ -58,6 +62,9 @@ namespace TicketApp.Vistas
             dataTable = new DataTable();
 
             // Crear el DataTable con las columnas necesarias
+            dataTable.Columns.Add("Id", typeof(int));
+            dataTable.Columns.Add("UsuarioId", typeof(string));
+            dataTable.Columns.Add("ContadorMensajes", typeof(int));
             dataTable.Columns.Add("Departamento", typeof(string));
             dataTable.Columns.Add("Usuario", typeof(string));
             dataTable.Columns.Add("Descripcion", typeof(string));
@@ -69,17 +76,21 @@ namespace TicketApp.Vistas
             foreach (var solicitud in solicitudes)
             {
                 dataTable.Rows.Add(
+                    solicitud.Id,
+                    solicitud.UsuarioId,
+                    solicitud.ContadorMensajes,
                     solicitud.Departamento,
                     solicitud.Usuario,
                     solicitud.Descripcion,
                     solicitud.EstadoActual,
-                    solicitud.Equipo, 
+                    solicitud.Equipo,
                     solicitud.Fecha
                 );
             }
 
             // Asignar el DataTable como la fuente de datos del DataGridView
             dataGridViewSolicitudes.DataSource = dataTable;
+            ActualizarUIConSolicitudes();
         }
 
 
@@ -116,6 +127,69 @@ namespace TicketApp.Vistas
                                               $"OR Departamento LIKE '%{filterText}%' " +
                                               $"OR Usuario LIKE '%{filterText}%' " +
                                               $"OR EstadoActual LIKE '%{filterText}%'";
+            dataGridViewSolicitudes.DataSource = dataTable;
+        }
+
+        private async void selectItem()
+        {
+            object v = dataGridViewSolicitudes.CurrentRow.Cells;
+
+            if (string.IsNullOrEmpty(dataGridViewSolicitudes.CurrentRow.Cells["Id"].Value.ToString()))
+            {
+                MessageBox.Show("Seleccione un registro",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                labelId.Text = Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Id"].Value);
+                labelUsuario.Text = Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Usuario"].Value);
+                labelEquipo.Text = Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Equipo"].Value);
+                labelDepartamento.Text = Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Departamento"].Value);
+                labelDescripcion.Text = Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Descripcion"].Value);
+                labelEstadoActual.Text = Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["EstadoActual"].Value);
+                labelFecha.Text = Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Fecha"].Value);
+                progressBarEstados.Visible = true;
+
+                detalleSolicitud = await solicitudesService.GetDetalleSolicitud(Int32.Parse(labelId.Text));
+                listBoxEstados.Items.Clear();
+                foreach (var estado in detalleSolicitud.Estados)
+                {
+                    listBoxEstados.Items.Add($"ESTADO: {estado.EstadoActual} | {estado.Comentario} | {estado.Fecha.ToString("dd/MM/yyyy HH:mm:ss")}");
+                }
+
+                progressBarEstados.Visible = false;
+            }
+        }
+
+        private void dataGridViewSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            selectItem();
+        }
+
+        private void dataGridViewSolicitudes_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            selectItem();
+        }
+
+        private void listBoxEstados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            labelDetalleEstado.Text = listBoxEstados.Text;
+        }
+
+        private void btnVerImagen_Click(object sender, EventArgs e)
+        {
+            if(detalleSolicitud is not null &&  !detalleSolicitud.UrlImagen.IsNullOrEmpty())
+            {
+                Imagen frmImagen = new Imagen(detalleSolicitud.UrlImagen);
+                frmImagen.Show();
+            }
+            else
+            {
+                MessageBox.Show("No se cargó imágen!!!", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
     }
 }

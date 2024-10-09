@@ -56,18 +56,17 @@
             panel1.Controls.Add(labelUsuario);
             panel1.Controls.Add(menuStrip1);
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1466, 151);
+            panel1.Size = new Size(1283, 113);
             panel1.TabIndex = 1;
             // 
             // labelUsuario
             // 
             labelUsuario.AutoSize = true;
             labelUsuario.Font = new Font("Verdana", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            labelUsuario.Location = new Point(14, 57);
+            labelUsuario.Location = new Point(12, 43);
             labelUsuario.Name = "labelUsuario";
-            labelUsuario.Size = new Size(105, 29);
+            labelUsuario.Size = new Size(82, 23);
             labelUsuario.TabIndex = 0;
             labelUsuario.Text = "Usuario";
             // 
@@ -77,8 +76,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { solicitudesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(7, 3, 0, 3);
-            menuStrip1.Size = new Size(1466, 30);
+            menuStrip1.Size = new Size(1283, 24);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -87,33 +85,34 @@
             solicitudesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { historialToolStripMenuItem });
             solicitudesToolStripMenuItem.Name = "solicitudesToolStripMenuItem";
             solicitudesToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
-            solicitudesToolStripMenuItem.Size = new Size(95, 24);
+            solicitudesToolStripMenuItem.Size = new Size(76, 20);
             solicitudesToolStripMenuItem.Text = "Solicitudes";
             // 
             // historialToolStripMenuItem
             // 
             historialToolStripMenuItem.Name = "historialToolStripMenuItem";
             historialToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.H;
-            historialToolStripMenuItem.Size = new Size(201, 26);
+            historialToolStripMenuItem.Size = new Size(180, 22);
             historialToolStripMenuItem.Text = "Historial";
+            historialToolStripMenuItem.Click += historialToolStripMenuItem_Click;
             // 
             // splitContainer2
             // 
             splitContainer2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            splitContainer2.Location = new Point(0, 158);
+            splitContainer2.Location = new Point(0, 118);
+            splitContainer2.Margin = new Padding(3, 2, 3, 2);
             splitContainer2.Name = "splitContainer2";
-            splitContainer2.Size = new Size(1466, 565);
-            splitContainer2.SplitterDistance = 626;
+            splitContainer2.Size = new Size(1283, 424);
+            splitContainer2.SplitterDistance = 547;
             splitContainer2.TabIndex = 6;
             // 
             // dataGridViewSolicitudes
             // 
             dataGridViewSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewSolicitudes.Location = new Point(14, 239);
-            dataGridViewSolicitudes.Margin = new Padding(3, 4, 3, 4);
+            dataGridViewSolicitudes.Location = new Point(12, 179);
             dataGridViewSolicitudes.Name = "dataGridViewSolicitudes";
             dataGridViewSolicitudes.RowHeadersWidth = 51;
-            dataGridViewSolicitudes.Size = new Size(682, 439);
+            dataGridViewSolicitudes.Size = new Size(597, 329);
             dataGridViewSolicitudes.TabIndex = 2;
             dataGridViewSolicitudes.CellContentClick += dataGridViewSolicitudes_CellContentClick;
             dataGridViewSolicitudes.CellEnter += dataGridViewSolicitudes_CellEnter;
@@ -125,28 +124,28 @@
             panel2.Controls.Add(progressBarEstados);
             panel2.Controls.Add(label9);
             panel2.Controls.Add(listBoxEstados);
-            panel2.Location = new Point(755, 239);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(661, 179);
             panel2.Name = "panel2";
-            panel2.Size = new Size(699, 439);
+            panel2.Size = new Size(612, 330);
             panel2.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(106, 49);
+            label1.Location = new Point(93, 37);
             label1.Name = "label1";
-            label1.Size = new Size(255, 20);
+            label1.Size = new Size(199, 15);
             label1.TabIndex = 27;
             label1.Text = "Estados de la solicitud seleccionada";
             // 
             // progressBarEstados
             // 
-            progressBarEstados.Location = new Point(3, 3);
+            progressBarEstados.Location = new Point(3, 2);
+            progressBarEstados.Margin = new Padding(3, 2, 3, 2);
             progressBarEstados.MarqueeAnimationSpeed = 10;
             progressBarEstados.Name = "progressBarEstados";
-            progressBarEstados.Size = new Size(689, 29);
+            progressBarEstados.Size = new Size(603, 22);
             progressBarEstados.Style = ProgressBarStyle.Marquee;
             progressBarEstados.TabIndex = 26;
             progressBarEstados.Visible = false;
@@ -154,27 +153,26 @@
             // label9
             // 
             label9.BorderStyle = BorderStyle.Fixed3D;
-            label9.Location = new Point(106, 302);
+            label9.Location = new Point(93, 226);
             label9.Name = "label9";
-            label9.Size = new Size(479, 115);
+            label9.Size = new Size(419, 86);
             label9.TabIndex = 25;
             // 
             // listBoxEstados
             // 
             listBoxEstados.FormattingEnabled = true;
-            listBoxEstados.Location = new Point(106, 85);
-            listBoxEstados.Margin = new Padding(3, 4, 3, 4);
+            listBoxEstados.ItemHeight = 15;
+            listBoxEstados.Location = new Point(93, 64);
             listBoxEstados.Name = "listBoxEstados";
-            listBoxEstados.Size = new Size(479, 204);
+            listBoxEstados.Size = new Size(420, 154);
             listBoxEstados.TabIndex = 24;
             listBoxEstados.SelectedIndexChanged += listBoxEstados_SelectedIndexChanged;
             // 
             // button1
             // 
-            button1.Location = new Point(22, 159);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(19, 119);
             button1.Name = "button1";
-            button1.Size = new Size(202, 48);
+            button1.Size = new Size(177, 36);
             button1.TabIndex = 4;
             button1.Text = "Solicitar";
             button1.UseVisualStyleBackColor = true;
@@ -182,15 +180,14 @@
             // 
             // frmPanelusrs
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1466, 763);
+            ClientSize = new Size(1283, 572);
             Controls.Add(splitContainer2);
             Controls.Add(button1);
             Controls.Add(panel2);
             Controls.Add(dataGridViewSolicitudes);
             Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmPanelusrs";
             Text = "frmPanelusrs";
             FormClosing += frmPanelusrs_FormClosing;
