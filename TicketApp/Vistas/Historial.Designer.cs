@@ -30,6 +30,7 @@
         {
             splitContainer1 = new SplitContainer();
             panel1 = new Panel();
+            button1 = new Button();
             progressBarSolicitudes = new ProgressBar();
             textBoxFilter = new TextBox();
             dataGridViewSolicitudes = new DataGridView();
@@ -51,7 +52,6 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -106,6 +106,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(659, 98);
             panel1.TabIndex = 1;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(11, 34);
+            button1.Name = "button1";
+            button1.Size = new Size(134, 31);
+            button1.TabIndex = 2;
+            button1.Text = "Imprimir";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // progressBarSolicitudes
             // 
@@ -303,16 +313,6 @@
             label2.Size = new Size(89, 15);
             label2.TabIndex = 25;
             label2.Text = "Departamento";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(11, 34);
-            button1.Name = "button1";
-            button1.Size = new Size(134, 31);
-            button1.TabIndex = 2;
-            button1.Text = "Imprimir";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // Historial
             // 
