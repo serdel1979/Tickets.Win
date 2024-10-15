@@ -100,6 +100,7 @@
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
+            MinimumSize = new Size(670, 592);
             Name = "Imagen";
             Text = "Imagen";
             Load += Imagen_Load;

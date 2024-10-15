@@ -92,7 +92,7 @@
             // 
             historialToolStripMenuItem.Name = "historialToolStripMenuItem";
             historialToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.H;
-            historialToolStripMenuItem.Size = new Size(180, 22);
+            historialToolStripMenuItem.Size = new Size(161, 22);
             historialToolStripMenuItem.Text = "Historial";
             historialToolStripMenuItem.Click += historialToolStripMenuItem_Click;
             // 
@@ -188,6 +188,7 @@
             Controls.Add(panel2);
             Controls.Add(dataGridViewSolicitudes);
             Controls.Add(panel1);
+            MinimumSize = new Size(1299, 611);
             Name = "frmPanelusrs";
             Text = "Panel";
             FormClosing += frmPanelusrs_FormClosing;

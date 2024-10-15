@@ -51,6 +51,7 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -97,6 +98,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(progressBarSolicitudes);
             panel1.Controls.Add(textBoxFilter);
             panel1.Dock = DockStyle.Top;
@@ -302,12 +304,23 @@
             label2.TabIndex = 25;
             label2.Text = "Departamento";
             // 
+            // button1
+            // 
+            button1.Location = new Point(11, 34);
+            button1.Name = "button1";
+            button1.Size = new Size(134, 31);
+            button1.TabIndex = 2;
+            button1.Text = "Imprimir";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Historial
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1156, 639);
             Controls.Add(splitContainer1);
+            MinimumSize = new Size(1172, 678);
             Name = "Historial";
             Text = "Historial";
             Load += Historial_Load;
@@ -347,5 +360,6 @@
         private Label label2;
         private Label labelId;
         private ProgressBar progressBarEstados;
+        private Button button1;
     }
 }

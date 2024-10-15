@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -180,7 +181,7 @@ namespace TicketApp.Vistas
 
         private void btnVerImagen_Click(object sender, EventArgs e)
         {
-            if(detalleSolicitud is not null &&  !detalleSolicitud.UrlImagen.IsNullOrEmpty())
+            if (detalleSolicitud is not null && !detalleSolicitud.UrlImagen.IsNullOrEmpty())
             {
                 Imagen frmImagen = new Imagen(detalleSolicitud.UrlImagen);
                 frmImagen.Show();
@@ -191,5 +192,17 @@ namespace TicketApp.Vistas
             }
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+
+
+
+        }
+
+
+
+
     }
 }

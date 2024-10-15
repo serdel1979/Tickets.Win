@@ -56,7 +56,7 @@
             progressBarNuevo.Location = new Point(0, 4);
             progressBarNuevo.MarqueeAnimationSpeed = 10;
             progressBarNuevo.Name = "progressBarNuevo";
-            progressBarNuevo.Size = new Size(1032, 23);
+            progressBarNuevo.Size = new Size(1055, 23);
             progressBarNuevo.Style = ProgressBarStyle.Marquee;
             progressBarNuevo.TabIndex = 0;
             progressBarNuevo.Visible = false;
@@ -106,7 +106,7 @@
             panel1.Location = new Point(16, 37);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1008, 484);
+            panel1.Size = new Size(1031, 484);
             panel1.TabIndex = 14;
             panel1.Paint += panel1_Paint;
             // 
@@ -240,13 +240,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1033, 665);
+            ClientSize = new Size(1056, 665);
             Controls.Add(panel1);
             Controls.Add(btnCerrar);
             Controls.Add(btnEnviar);
             Controls.Add(progressBarNuevo);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
+            MinimumSize = new Size(1072, 704);
             Name = "FormNuevo";
             Text = "Nuevo";
             Load += FormNuevo_LoadAsync;

@@ -116,7 +116,7 @@
             // 
             historialToolStripMenuItem.Name = "historialToolStripMenuItem";
             historialToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.H;
-            historialToolStripMenuItem.Size = new Size(180, 22);
+            historialToolStripMenuItem.Size = new Size(161, 22);
             historialToolStripMenuItem.Text = "Historial";
             historialToolStripMenuItem.Click += historialToolStripMenuItem_Click;
             // 
@@ -226,6 +226,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
+            MaximumSize = new Size(1184, 667);
             Name = "frmAdmin";
             Text = "Panel";
             Activated += frmAdmin_Activated;

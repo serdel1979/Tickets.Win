@@ -35,7 +35,7 @@ namespace TicketApp
             this._appSettings = appSettings.Value;
         }
 
-        private async void btnLogin_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             Ingresar();
         }

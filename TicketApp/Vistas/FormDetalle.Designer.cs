@@ -317,6 +317,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
+            MinimumSize = new Size(1009, 731);
             Name = "FormDetalle";
             Text = "Detalle";
             Load += FormDetalle_LoadAsync;
