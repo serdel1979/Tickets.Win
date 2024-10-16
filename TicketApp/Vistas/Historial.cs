@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using TicketApp.Services.Data;
 using TicketApp.Services.Login;
 using TicketApp.Services.Solicitudes;
+using TicketApp.Vistas.Reports;
 
 namespace TicketApp.Vistas
 {
@@ -195,9 +196,8 @@ namespace TicketApp.Vistas
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-
-
+            var report = new ReporteHistorial(solicitudes);
+            report.Show();
 
         }
 
