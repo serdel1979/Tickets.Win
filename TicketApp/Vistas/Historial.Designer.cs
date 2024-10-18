@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Historial));
             splitContainer1 = new SplitContainer();
             panel1 = new Panel();
             button1 = new Button();
@@ -52,6 +53,7 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
+            Report = new PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -314,6 +316,16 @@
             label2.TabIndex = 25;
             label2.Text = "Departamento";
             // 
+            // Report
+            // 
+            Report.AutoScrollMargin = new Size(0, 0);
+            Report.AutoScrollMinSize = new Size(0, 0);
+            Report.ClientSize = new Size(400, 300);
+            Report.Enabled = true;
+            Report.Icon = (Icon)resources.GetObject("Report.Icon");
+            Report.Name = "printPreviewDialog1";
+            Report.Visible = false;
+            // 
             // Historial
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -361,5 +373,6 @@
         private Label labelId;
         private ProgressBar progressBarEstados;
         private Button button1;
+        private PrintPreviewDialog Report;
     }
 }

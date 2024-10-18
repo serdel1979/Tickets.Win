@@ -13,7 +13,6 @@ using System.Windows.Forms;
 using TicketApp.Services.Data;
 using TicketApp.Services.Login;
 using TicketApp.Services.Solicitudes;
-using TicketApp.Vistas.Reports;
 
 namespace TicketApp.Vistas
 {
@@ -27,6 +26,8 @@ namespace TicketApp.Vistas
         List<Solicitud> solicitudes;  // Lista de datos (puedes usar el tipo adecuado)
 
         DetalleSolicitud detalleSolicitud;
+
+        private int currentPage = 0;
 
         public Historial(TokenService tokenService, ISolicitudesService solicitudesService)
         {
@@ -196,13 +197,96 @@ namespace TicketApp.Vistas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var report = new ReporteHistorial(solicitudes);
-            report.Show();
+            PrintDocument document = new PrintDocument();
 
+            // Configuración de la página
+            document.DefaultPageSettings.PaperSize = new PaperSize("Carta", 850, 1100);
+            document.DefaultPageSettings.Landscape = true;
+            document.DocumentName = "Historial";
+
+            // Suscribirse al evento PrintPage
+            document.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
+
+            // Asignar el documento al PrintPreviewDialog
+            Report.Document = document;
+            Report.Activate();
+            Report.ShowDialog();
         }
 
 
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Graphics graphics = e.Graphics;
+            Font font = new Font("Arial", 10);
+            float yPos = e.MarginBounds.Top;
+            int leftMargin = e.MarginBounds.Left;
+            int lineHeight = (int)font.GetHeight(graphics) + 5; // Espacio entre líneas
+            int maxLinesPerPage = (e.MarginBounds.Height / lineHeight) - 1; // Líneas que caben en la página
+            Font headerFont = new Font("Arial", 12, FontStyle.Bold); // Fuente más grande y negrita
+            float headerHeight = (int)headerFont.GetHeight(graphics) + 5; // Altura del encabezado
 
+            // Imprimir encabezados solo en la primera página
+            if (currentPage == 0)
+            {
+                // Asegúrate de que todos los encabezados se alineen bien y tengan el mismo tamaño
+                graphics.DrawString("Usuario", headerFont, Brushes.Black, leftMargin, yPos);
+                graphics.DrawString("Departamento", headerFont, Brushes.Black, leftMargin + 150, yPos);
+                graphics.DrawString("Descripción", headerFont, Brushes.Black, leftMargin + 300, yPos);
+                graphics.DrawString("Estado Actual", headerFont, Brushes.Black, leftMargin + 450, yPos);
+                graphics.DrawString("Fecha", headerFont, Brushes.Black, leftMargin + 600, yPos);
+
+                yPos += headerHeight; // Aumentar la posición para el contenido
+            }
+
+            // Imprimir cada solicitud
+            for (int i = currentPage * maxLinesPerPage; i < solicitudes.Count; i++)
+            {
+                var solicitud = solicitudes[i];
+
+                // Medir la altura del texto para Usuario, Departamento y Descripción
+                SizeF usuarioSize = graphics.MeasureString(solicitud.Usuario, font, new SizeF(150, float.MaxValue));
+                SizeF departamentoSize = graphics.MeasureString(solicitud.Departamento, font, new SizeF(150, float.MaxValue));
+                SizeF descripcionSize = graphics.MeasureString(solicitud.Descripcion, font, new SizeF(300, float.MaxValue));
+                SizeF estadoSize = graphics.MeasureString(solicitud.EstadoActual, font, new SizeF(100, float.MaxValue));
+                SizeF fechaSize = graphics.MeasureString(solicitud.Fecha.ToShortDateString(), font, new SizeF(100, float.MaxValue));
+
+                // Calcular el mayor tamaño de los campos
+                float maxHeight = Math.Max(usuarioSize.Height, Math.Max(departamentoSize.Height, Math.Max(descripcionSize.Height, Math.Max(estadoSize.Height, fechaSize.Height))));
+
+                // Dibujar Usuario
+                RectangleF usuarioRect = new RectangleF(leftMargin, yPos, 150, maxHeight);
+                graphics.DrawString(solicitud.Usuario, font, Brushes.Black, usuarioRect);
+
+                // Dibujar Departamento
+                RectangleF departamentoRect = new RectangleF(leftMargin + 150, yPos, 150, maxHeight);
+                graphics.DrawString(solicitud.Departamento, font, Brushes.Black, departamentoRect);
+
+                // Dibujar Descripción
+                RectangleF descripcionRect = new RectangleF(leftMargin + 300, yPos, 300, maxHeight);
+                graphics.DrawString(solicitud.Descripcion, font, Brushes.Black, descripcionRect);
+
+                // Dibujar Estado Actual
+                RectangleF estadoRect = new RectangleF(leftMargin + 600, yPos, 100, maxHeight);
+                graphics.DrawString(solicitud.EstadoActual, font, Brushes.Black, estadoRect);
+
+                // Dibujar Fecha
+                RectangleF fechaRect = new RectangleF(leftMargin + 700, yPos, 100, maxHeight);
+                graphics.DrawString(solicitud.Fecha.ToShortDateString(), font, Brushes.Black, fechaRect);
+
+                // Aumentar yPos según el tamaño máximo de la línea
+                yPos += maxHeight + 5; // Agregar un margen entre filas
+
+                // Controla si necesitas saltar de página
+                if (yPos + maxHeight > e.MarginBounds.Bottom)
+                {
+                    e.HasMorePages = true; // Indica que hay más páginas que imprimir
+                    currentPage++; // Incrementar el número de página
+                    return;
+                }
+            }
+
+            e.HasMorePages = false; // No hay más páginas
+        }
 
     }
 }

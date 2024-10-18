@@ -9,19 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Vistas\Reports\Historial.rdlc" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Vistas\Reports\Historial.rdlc" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.6" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
-    <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.23" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +23,10 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Vistas\Reports\" />
   </ItemGroup>
 
 </Project>
