@@ -232,8 +232,8 @@ namespace TicketApp.Vistas
                 graphics.DrawString("Usuario", headerFont, Brushes.Black, leftMargin, yPos);
                 graphics.DrawString("Departamento", headerFont, Brushes.Black, leftMargin + 150, yPos);
                 graphics.DrawString("Descripción", headerFont, Brushes.Black, leftMargin + 300, yPos);
-                graphics.DrawString("Estado Actual", headerFont, Brushes.Black, leftMargin + 450, yPos);
-                graphics.DrawString("Fecha", headerFont, Brushes.Black, leftMargin + 600, yPos);
+                graphics.DrawString("Estado", headerFont, Brushes.Black, leftMargin + 600, yPos);
+                graphics.DrawString("Fecha", headerFont, Brushes.Black, leftMargin + 700, yPos);
 
                 yPos += headerHeight; // Aumentar la posición para el contenido
             }
@@ -243,12 +243,14 @@ namespace TicketApp.Vistas
             {
                 var solicitud = solicitudes[i];
 
+
+
                 // Medir la altura del texto para Usuario, Departamento y Descripción
                 SizeF usuarioSize = graphics.MeasureString(solicitud.Usuario, font, new SizeF(150, float.MaxValue));
                 SizeF departamentoSize = graphics.MeasureString(solicitud.Departamento, font, new SizeF(150, float.MaxValue));
                 SizeF descripcionSize = graphics.MeasureString(solicitud.Descripcion, font, new SizeF(300, float.MaxValue));
                 SizeF estadoSize = graphics.MeasureString(solicitud.EstadoActual, font, new SizeF(100, float.MaxValue));
-                SizeF fechaSize = graphics.MeasureString(solicitud.Fecha.ToShortDateString(), font, new SizeF(100, float.MaxValue));
+                SizeF fechaSize = graphics.MeasureString(solicitud.Fecha.ToString("dd/MM/yyyy HH:mm"), font, new SizeF(100, float.MaxValue));
 
                 // Calcular el mayor tamaño de los campos
                 float maxHeight = Math.Max(usuarioSize.Height, Math.Max(departamentoSize.Height, Math.Max(descripcionSize.Height, Math.Max(estadoSize.Height, fechaSize.Height))));
@@ -271,7 +273,7 @@ namespace TicketApp.Vistas
 
                 // Dibujar Fecha
                 RectangleF fechaRect = new RectangleF(leftMargin + 700, yPos, 100, maxHeight);
-                graphics.DrawString(solicitud.Fecha.ToShortDateString(), font, Brushes.Black, fechaRect);
+                graphics.DrawString(solicitud.Fecha.ToString("dd/MM/yyyy HH:mm"), font, Brushes.Black, fechaRect);
 
                 // Aumentar yPos según el tamaño máximo de la línea
                 yPos += maxHeight + 5; // Agregar un margen entre filas
