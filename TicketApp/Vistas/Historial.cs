@@ -25,6 +25,8 @@ namespace TicketApp.Vistas
 
         List<Solicitud> solicitudes;  // Lista de datos (puedes usar el tipo adecuado)
 
+        List<Solicitud> solicitudesFiltradas = new List<Solicitud>();
+
         DetalleSolicitud detalleSolicitud;
 
         private int currentPage = 0;
@@ -87,12 +89,13 @@ namespace TicketApp.Vistas
                     solicitud.Descripcion,
                     solicitud.EstadoActual,
                     solicitud.Equipo,
-                    solicitud.Fecha
+                    solicitud.FechaEstado
                 );
             }
 
             // Asignar el DataTable como la fuente de datos del DataGridView
             dataGridViewSolicitudes.DataSource = dataTable;
+            solicitudesFiltradas = solicitudes.ToList();
             ActualizarUIConSolicitudes();
         }
 
@@ -131,6 +134,20 @@ namespace TicketApp.Vistas
                                               $"OR Usuario LIKE '%{filterText}%' " +
                                               $"OR EstadoActual LIKE '%{filterText}%'";
             dataGridViewSolicitudes.DataSource = dataTable;
+
+            solicitudesFiltradas = dataTable.AsEnumerable().Select(row => new Solicitud
+            {
+                Id = row.Field<int>("Id"),
+                UsuarioId = row.Field<string>("UsuarioId"),
+                ContadorMensajes = row.Field<int>("ContadorMensajes"),
+                Departamento = row.Field<string>("Departamento"),
+                Usuario = row.Field<string>("Usuario"),
+                Descripcion = row.Field<string>("Descripcion"),
+                EstadoActual = row.Field<string>("EstadoActual"),
+                Equipo = row.Field<string>("Equipo"),
+                FechaEstado = row.Field<DateTime>("Fecha")
+            }).ToList();
+            currentPage = 0;
         }
 
         private async void selectItem()
@@ -239,9 +256,9 @@ namespace TicketApp.Vistas
             }
 
             // Imprimir cada solicitud
-            for (int i = currentPage * maxLinesPerPage; i < solicitudes.Count; i++)
+            for (int i = currentPage * maxLinesPerPage; i < solicitudesFiltradas.Count; i++)
             {
-                var solicitud = solicitudes[i];
+                var solicitud = solicitudesFiltradas[i];
 
 
 
@@ -250,7 +267,7 @@ namespace TicketApp.Vistas
                 SizeF departamentoSize = graphics.MeasureString(solicitud.Departamento, font, new SizeF(150, float.MaxValue));
                 SizeF descripcionSize = graphics.MeasureString(solicitud.Descripcion, font, new SizeF(300, float.MaxValue));
                 SizeF estadoSize = graphics.MeasureString(solicitud.EstadoActual, font, new SizeF(100, float.MaxValue));
-                SizeF fechaSize = graphics.MeasureString(solicitud.Fecha.ToString("dd/MM/yyyy HH:mm"), font, new SizeF(100, float.MaxValue));
+                SizeF fechaSize = graphics.MeasureString(solicitud.FechaEstado.ToString("dd/MM/yyyy HH:mm"), font, new SizeF(100, float.MaxValue));
 
                 // Calcular el mayor tamaño de los campos
                 float maxHeight = Math.Max(usuarioSize.Height, Math.Max(departamentoSize.Height, Math.Max(descripcionSize.Height, Math.Max(estadoSize.Height, fechaSize.Height))));
@@ -273,7 +290,7 @@ namespace TicketApp.Vistas
 
                 // Dibujar Fecha
                 RectangleF fechaRect = new RectangleF(leftMargin + 700, yPos, 100, maxHeight);
-                graphics.DrawString(solicitud.Fecha.ToString("dd/MM/yyyy HH:mm"), font, Brushes.Black, fechaRect);
+                graphics.DrawString(solicitud.FechaEstado.ToString("dd/MM/yyyy HH:mm"), font, Brushes.Black, fechaRect);
 
                 // Aumentar yPos según el tamaño máximo de la línea
                 yPos += maxHeight + 5; // Agregar un margen entre filas
@@ -288,6 +305,7 @@ namespace TicketApp.Vistas
             }
 
             e.HasMorePages = false; // No hay más páginas
+            currentPage = 0;
         }
 
     }

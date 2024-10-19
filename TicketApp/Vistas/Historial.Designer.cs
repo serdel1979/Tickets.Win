@@ -66,6 +66,7 @@
             // 
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.Location = new Point(0, 0);
+            splitContainer1.Margin = new Padding(3, 4, 3, 4);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -93,9 +94,9 @@
             splitContainer1.Panel2.Controls.Add(label4);
             splitContainer1.Panel2.Controls.Add(label3);
             splitContainer1.Panel2.Controls.Add(label2);
-            splitContainer1.Size = new Size(1156, 639);
-            splitContainer1.SplitterDistance = 659;
-            splitContainer1.SplitterWidth = 5;
+            splitContainer1.Size = new Size(1321, 852);
+            splitContainer1.SplitterDistance = 753;
+            splitContainer1.SplitterWidth = 6;
             splitContainer1.TabIndex = 0;
             // 
             // panel1
@@ -105,15 +106,17 @@
             panel1.Controls.Add(textBoxFilter);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(659, 98);
+            panel1.Size = new Size(753, 131);
             panel1.TabIndex = 1;
             // 
             // button1
             // 
-            button1.Location = new Point(11, 34);
+            button1.Location = new Point(13, 45);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(134, 31);
+            button1.Size = new Size(153, 41);
             button1.TabIndex = 2;
             button1.Text = "Imprimir";
             button1.UseVisualStyleBackColor = true;
@@ -122,10 +125,11 @@
             // progressBarSolicitudes
             // 
             progressBarSolicitudes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            progressBarSolicitudes.Location = new Point(3, 3);
+            progressBarSolicitudes.Location = new Point(3, 4);
+            progressBarSolicitudes.Margin = new Padding(3, 4, 3, 4);
             progressBarSolicitudes.MarqueeAnimationSpeed = 10;
             progressBarSolicitudes.Name = "progressBarSolicitudes";
-            progressBarSolicitudes.Size = new Size(656, 23);
+            progressBarSolicitudes.Size = new Size(750, 31);
             progressBarSolicitudes.Style = ProgressBarStyle.Marquee;
             progressBarSolicitudes.TabIndex = 1;
             progressBarSolicitudes.Visible = false;
@@ -133,9 +137,10 @@
             // textBoxFilter
             // 
             textBoxFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxFilter.Location = new Point(3, 72);
+            textBoxFilter.Location = new Point(3, 96);
+            textBoxFilter.Margin = new Padding(3, 4, 3, 4);
             textBoxFilter.Name = "textBoxFilter";
-            textBoxFilter.Size = new Size(654, 23);
+            textBoxFilter.Size = new Size(747, 27);
             textBoxFilter.TabIndex = 0;
             textBoxFilter.Text = "Filtrar";
             textBoxFilter.TextChanged += textBoxFilter_TextChanged;
@@ -144,19 +149,22 @@
             // 
             dataGridViewSolicitudes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewSolicitudes.Location = new Point(0, 104);
+            dataGridViewSolicitudes.Location = new Point(0, 139);
+            dataGridViewSolicitudes.Margin = new Padding(3, 4, 3, 4);
             dataGridViewSolicitudes.Name = "dataGridViewSolicitudes";
-            dataGridViewSolicitudes.Size = new Size(659, 440);
+            dataGridViewSolicitudes.RowHeadersWidth = 51;
+            dataGridViewSolicitudes.Size = new Size(753, 587);
             dataGridViewSolicitudes.TabIndex = 0;
             dataGridViewSolicitudes.CellContentClick += dataGridViewSolicitudes_CellContentClick;
             dataGridViewSolicitudes.CellEnter += dataGridViewSolicitudes_CellEnter;
             // 
             // progressBarEstados
             // 
-            progressBarEstados.Location = new Point(182, 358);
+            progressBarEstados.Location = new Point(208, 477);
+            progressBarEstados.Margin = new Padding(3, 4, 3, 4);
             progressBarEstados.MarqueeAnimationSpeed = 10;
             progressBarEstados.Name = "progressBarEstados";
-            progressBarEstados.Size = new Size(251, 23);
+            progressBarEstados.Size = new Size(287, 31);
             progressBarEstados.Style = ProgressBarStyle.Marquee;
             progressBarEstados.TabIndex = 42;
             progressBarEstados.Visible = false;
@@ -164,17 +172,18 @@
             // labelId
             // 
             labelId.AutoSize = true;
-            labelId.Location = new Point(58, 11);
+            labelId.Location = new Point(66, 15);
             labelId.Name = "labelId";
-            labelId.Size = new Size(0, 15);
+            labelId.Size = new Size(0, 20);
             labelId.TabIndex = 41;
             labelId.Visible = false;
             // 
             // btnVerImagen
             // 
-            btnVerImagen.Location = new Point(51, 310);
+            btnVerImagen.Location = new Point(58, 413);
+            btnVerImagen.Margin = new Padding(3, 4, 3, 4);
             btnVerImagen.Name = "btnVerImagen";
-            btnVerImagen.Size = new Size(102, 27);
+            btnVerImagen.Size = new Size(117, 36);
             btnVerImagen.TabIndex = 40;
             btnVerImagen.Text = "Imagen";
             btnVerImagen.UseVisualStyleBackColor = true;
@@ -183,66 +192,66 @@
             // labelDetalleEstado
             // 
             labelDetalleEstado.BorderStyle = BorderStyle.Fixed3D;
-            labelDetalleEstado.Location = new Point(51, 532);
+            labelDetalleEstado.Location = new Point(58, 709);
             labelDetalleEstado.Name = "labelDetalleEstado";
-            labelDetalleEstado.Size = new Size(382, 98);
+            labelDetalleEstado.Size = new Size(437, 131);
             labelDetalleEstado.TabIndex = 39;
             // 
             // labelDescripcion
             // 
             labelDescripcion.BorderStyle = BorderStyle.Fixed3D;
-            labelDescripcion.Location = new Point(182, 271);
+            labelDescripcion.Location = new Point(208, 361);
             labelDescripcion.Name = "labelDescripcion";
-            labelDescripcion.Size = new Size(260, 66);
+            labelDescripcion.Size = new Size(297, 88);
             labelDescripcion.TabIndex = 38;
             // 
             // labelFecha
             // 
             labelFecha.BorderStyle = BorderStyle.Fixed3D;
-            labelFecha.Location = new Point(182, 225);
+            labelFecha.Location = new Point(208, 300);
             labelFecha.Name = "labelFecha";
-            labelFecha.Size = new Size(261, 35);
+            labelFecha.Size = new Size(298, 47);
             labelFecha.TabIndex = 37;
             // 
             // labelEstadoActual
             // 
             labelEstadoActual.BorderStyle = BorderStyle.Fixed3D;
-            labelEstadoActual.Location = new Point(182, 177);
+            labelEstadoActual.Location = new Point(208, 236);
             labelEstadoActual.Name = "labelEstadoActual";
-            labelEstadoActual.Size = new Size(261, 40);
+            labelEstadoActual.Size = new Size(298, 53);
             labelEstadoActual.TabIndex = 36;
             // 
             // labelEquipo
             // 
             labelEquipo.BorderStyle = BorderStyle.Fixed3D;
-            labelEquipo.Location = new Point(182, 128);
+            labelEquipo.Location = new Point(208, 171);
             labelEquipo.Name = "labelEquipo";
-            labelEquipo.Size = new Size(261, 40);
+            labelEquipo.Size = new Size(298, 53);
             labelEquipo.TabIndex = 35;
             // 
             // labelUsuario
             // 
             labelUsuario.BorderStyle = BorderStyle.Fixed3D;
-            labelUsuario.Location = new Point(182, 78);
+            labelUsuario.Location = new Point(208, 104);
             labelUsuario.Name = "labelUsuario";
-            labelUsuario.Size = new Size(261, 40);
+            labelUsuario.Size = new Size(298, 53);
             labelUsuario.TabIndex = 34;
             // 
             // labelDepartamento
             // 
             labelDepartamento.BorderStyle = BorderStyle.Fixed3D;
-            labelDepartamento.Location = new Point(182, 27);
+            labelDepartamento.Location = new Point(208, 36);
             labelDepartamento.Name = "labelDepartamento";
-            labelDepartamento.Size = new Size(261, 40);
+            labelDepartamento.Size = new Size(298, 53);
             labelDepartamento.TabIndex = 33;
             // 
             // listBoxEstados
             // 
             listBoxEstados.FormattingEnabled = true;
-            listBoxEstados.ItemHeight = 15;
-            listBoxEstados.Location = new Point(51, 390);
+            listBoxEstados.Location = new Point(58, 520);
+            listBoxEstados.Margin = new Padding(3, 4, 3, 4);
             listBoxEstados.Name = "listBoxEstados";
-            listBoxEstados.Size = new Size(382, 139);
+            listBoxEstados.Size = new Size(436, 184);
             listBoxEstados.TabIndex = 32;
             listBoxEstados.SelectedIndexChanged += listBoxEstados_SelectedIndexChanged;
             // 
@@ -250,9 +259,9 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(51, 358);
+            label8.Location = new Point(58, 477);
             label8.Name = "label8";
-            label8.Size = new Size(53, 15);
+            label8.Size = new Size(68, 20);
             label8.TabIndex = 31;
             label8.Text = "Historial";
             // 
@@ -260,9 +269,9 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(51, 272);
+            label7.Location = new Point(58, 363);
             label7.Name = "label7";
-            label7.Size = new Size(72, 15);
+            label7.Size = new Size(90, 20);
             label7.TabIndex = 30;
             label7.Text = "Descripción";
             // 
@@ -270,9 +279,9 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(51, 225);
+            label6.Location = new Point(58, 300);
             label6.Name = "label6";
-            label6.Size = new Size(39, 15);
+            label6.Size = new Size(49, 20);
             label6.TabIndex = 29;
             label6.Text = "Fecha";
             // 
@@ -280,9 +289,9 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(51, 177);
+            label5.Location = new Point(58, 236);
             label5.Name = "label5";
-            label5.Size = new Size(79, 15);
+            label5.Size = new Size(102, 20);
             label5.TabIndex = 28;
             label5.Text = "Estado actual";
             // 
@@ -290,9 +299,9 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(51, 128);
+            label4.Location = new Point(58, 171);
             label4.Name = "label4";
-            label4.Size = new Size(44, 15);
+            label4.Size = new Size(57, 20);
             label4.TabIndex = 27;
             label4.Text = "Equipo";
             // 
@@ -300,9 +309,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(51, 84);
+            label3.Location = new Point(58, 112);
             label3.Name = "label3";
-            label3.Size = new Size(49, 15);
+            label3.Size = new Size(63, 20);
             label3.TabIndex = 26;
             label3.Text = "Usuario";
             // 
@@ -310,9 +319,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(51, 40);
+            label2.Location = new Point(58, 53);
             label2.Name = "label2";
-            label2.Size = new Size(89, 15);
+            label2.Size = new Size(111, 20);
             label2.TabIndex = 25;
             label2.Text = "Departamento";
             // 
@@ -328,11 +337,12 @@
             // 
             // Historial
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1156, 639);
+            ClientSize = new Size(1321, 852);
             Controls.Add(splitContainer1);
-            MinimumSize = new Size(1172, 678);
+            Margin = new Padding(3, 4, 3, 4);
+            MinimumSize = new Size(1337, 888);
             Name = "Historial";
             Text = "Historial";
             Load += Historial_Load;

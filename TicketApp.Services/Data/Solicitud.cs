@@ -17,5 +17,6 @@ namespace TicketApp.Services.Data
         public string EstadoActual { get; set; }
         public int ContadorMensajes { get; set; }
         public DateTime Fecha { get; set; }
+        public DateTime FechaEstado { get; set; }
     }
 }
