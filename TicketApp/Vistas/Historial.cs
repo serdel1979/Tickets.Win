@@ -133,9 +133,12 @@ namespace TicketApp.Vistas
                                               $"OR Departamento LIKE '%{filterText}%' " +
                                               $"OR Usuario LIKE '%{filterText}%' " +
                                               $"OR EstadoActual LIKE '%{filterText}%'";
+
+            // Actualizar el DataGridView
             dataGridViewSolicitudes.DataSource = dataTable;
 
-            solicitudesFiltradas = dataTable.AsEnumerable().Select(row => new Solicitud
+            // Filtrar las solicitudes según la vista filtrada del DataTable (DefaultView)
+            solicitudesFiltradas = dataTable.DefaultView.ToTable().AsEnumerable().Select(row => new Solicitud
             {
                 Id = row.Field<int>("Id"),
                 UsuarioId = row.Field<string>("UsuarioId"),
@@ -147,8 +150,10 @@ namespace TicketApp.Vistas
                 Equipo = row.Field<string>("Equipo"),
                 FechaEstado = row.Field<DateTime>("Fecha")
             }).ToList();
-            currentPage = 0;
+
+
         }
+
 
         private async void selectItem()
         {
@@ -224,11 +229,20 @@ namespace TicketApp.Vistas
             // Suscribirse al evento PrintPage
             document.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
 
-            // Asignar el documento al PrintPreviewDialog
+            // Asignar el documento al PrintPreviewDialog (Vista previa)
             Report.Document = document;
-            Report.Activate();
-            Report.ShowDialog();
+
+            // Mostrar la vista previa del informe
+            DialogResult result = Report.ShowDialog();
+
+            // Si el usuario hace clic en el botón de imprimir en el diálogo de vista previa
+           // if (result == DialogResult.OK)
+           // {
+                // Iniciar la impresión
+                document.Print();
+           // }
         }
+
 
 
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
@@ -243,17 +257,17 @@ namespace TicketApp.Vistas
             float headerHeight = (int)headerFont.GetHeight(graphics) + 5; // Altura del encabezado
 
             // Imprimir encabezados solo en la primera página
-            if (currentPage == 0)
-            {
+            //if (currentPage == 0)
+            //{
                 // Asegúrate de que todos los encabezados se alineen bien y tengan el mismo tamaño
-                graphics.DrawString("Usuario", headerFont, Brushes.Black, leftMargin, yPos);
-                graphics.DrawString("Departamento", headerFont, Brushes.Black, leftMargin + 150, yPos);
-                graphics.DrawString("Descripción", headerFont, Brushes.Black, leftMargin + 300, yPos);
-                graphics.DrawString("Estado", headerFont, Brushes.Black, leftMargin + 600, yPos);
-                graphics.DrawString("Fecha", headerFont, Brushes.Black, leftMargin + 700, yPos);
+            graphics.DrawString("Usuario", headerFont, Brushes.Black, leftMargin, yPos);
+            graphics.DrawString("Departamento", headerFont, Brushes.Black, leftMargin + 150, yPos);
+            graphics.DrawString("Descripción", headerFont, Brushes.Black, leftMargin + 300, yPos);
+            graphics.DrawString("Estado", headerFont, Brushes.Black, leftMargin + 600, yPos);
+            graphics.DrawString("Fecha", headerFont, Brushes.Black, leftMargin + 700, yPos);
 
-                yPos += headerHeight; // Aumentar la posición para el contenido
-            }
+            yPos += headerHeight; // Aumentar la posición para el contenido
+           // }
 
             // Imprimir cada solicitud
             for (int i = currentPage * maxLinesPerPage; i < solicitudesFiltradas.Count; i++)

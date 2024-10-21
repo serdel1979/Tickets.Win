@@ -51,6 +51,18 @@ namespace TicketApp.Vistas
             try
             {
                 solicitudes = await solicitudesService.GetSolicitudes();
+                if (solicitudes.Count == 0)
+                {
+                    dataGridViewSolicitudes.Visible = false;
+                    label2.Visible = true;
+                    label1.Visible = false;
+                }
+                else
+                {
+                    dataGridViewSolicitudes.Visible = true;
+                    label2.Visible = false;
+                    label1.Visible = true;
+                }
                 ActualizarUIConSolicitudes();
             }
             catch (Exception ex)
