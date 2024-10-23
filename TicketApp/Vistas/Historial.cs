@@ -236,11 +236,11 @@ namespace TicketApp.Vistas
             DialogResult result = Report.ShowDialog();
 
             // Si el usuario hace clic en el botón de imprimir en el diálogo de vista previa
-           // if (result == DialogResult.OK)
-           // {
+            if (result == DialogResult.OK)
+            {
                 // Iniciar la impresión
                 document.Print();
-           // }
+            }
         }
 
 
