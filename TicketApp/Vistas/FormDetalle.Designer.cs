@@ -32,7 +32,6 @@
             panel1 = new Panel();
             btnVerImagen = new Button();
             label9 = new Label();
-            labelDescripcion = new Label();
             labelFecha = new Label();
             labelEstadoActual = new Label();
             labelEquipo = new Label();
@@ -52,6 +51,7 @@
             richTextBoxComentario = new RichTextBox();
             comboBoxEstadosPosibles = new ComboBox();
             progressBarCarga = new ProgressBar();
+            labelDescripcion = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -70,9 +70,9 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(labelDescripcion);
             panel1.Controls.Add(btnVerImagen);
             panel1.Controls.Add(label9);
-            panel1.Controls.Add(labelDescripcion);
             panel1.Controls.Add(labelFecha);
             panel1.Controls.Add(labelEstadoActual);
             panel1.Controls.Add(labelEquipo);
@@ -110,14 +110,6 @@
             label9.Size = new Size(382, 86);
             label9.TabIndex = 23;
             label9.Click += label9_Click;
-            // 
-            // labelDescripcion
-            // 
-            labelDescripcion.BorderStyle = BorderStyle.Fixed3D;
-            labelDescripcion.Location = new Point(189, 251);
-            labelDescripcion.Name = "labelDescripcion";
-            labelDescripcion.Size = new Size(260, 66);
-            labelDescripcion.TabIndex = 22;
             // 
             // labelFecha
             // 
@@ -305,6 +297,16 @@
             progressBarCarga.Style = ProgressBarStyle.Marquee;
             progressBarCarga.TabIndex = 15;
             // 
+            // labelDescripcion
+            // 
+            labelDescripcion.Location = new Point(189, 252);
+            labelDescripcion.Multiline = true;
+            labelDescripcion.Name = "labelDescripcion";
+            labelDescripcion.ReadOnly = true;
+            labelDescripcion.ScrollBars = ScrollBars.Both;
+            labelDescripcion.Size = new Size(261, 65);
+            labelDescripcion.TabIndex = 25;
+            // 
             // FormDetalle
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -332,7 +334,6 @@
 
         private Label label1;
         private Panel panel1;
-        private Label labelDescripcion;
         private Label labelFecha;
         private Label labelEstadoActual;
         private Label labelEquipo;
@@ -354,5 +355,6 @@
         private Button button2;
         private Label label9;
         private Button btnVerImagen;
+        private TextBox labelDescripcion;
     }
 }

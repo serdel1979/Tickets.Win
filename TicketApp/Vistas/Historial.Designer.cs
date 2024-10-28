@@ -35,11 +35,11 @@
             progressBarSolicitudes = new ProgressBar();
             textBoxFilter = new TextBox();
             dataGridViewSolicitudes = new DataGridView();
+            labelDescripcion = new TextBox();
             progressBarEstados = new ProgressBar();
             labelId = new Label();
             btnVerImagen = new Button();
             labelDetalleEstado = new Label();
-            labelDescripcion = new Label();
             labelFecha = new Label();
             labelEstadoActual = new Label();
             labelEquipo = new Label();
@@ -66,7 +66,6 @@
             // 
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.Location = new Point(0, 0);
-            splitContainer1.Margin = new Padding(3, 4, 3, 4);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -76,11 +75,11 @@
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.Controls.Add(labelDescripcion);
             splitContainer1.Panel2.Controls.Add(progressBarEstados);
             splitContainer1.Panel2.Controls.Add(labelId);
             splitContainer1.Panel2.Controls.Add(btnVerImagen);
             splitContainer1.Panel2.Controls.Add(labelDetalleEstado);
-            splitContainer1.Panel2.Controls.Add(labelDescripcion);
             splitContainer1.Panel2.Controls.Add(labelFecha);
             splitContainer1.Panel2.Controls.Add(labelEstadoActual);
             splitContainer1.Panel2.Controls.Add(labelEquipo);
@@ -94,9 +93,9 @@
             splitContainer1.Panel2.Controls.Add(label4);
             splitContainer1.Panel2.Controls.Add(label3);
             splitContainer1.Panel2.Controls.Add(label2);
-            splitContainer1.Size = new Size(1321, 852);
-            splitContainer1.SplitterDistance = 753;
-            splitContainer1.SplitterWidth = 6;
+            splitContainer1.Size = new Size(1156, 639);
+            splitContainer1.SplitterDistance = 658;
+            splitContainer1.SplitterWidth = 5;
             splitContainer1.TabIndex = 0;
             // 
             // panel1
@@ -106,17 +105,15 @@
             panel1.Controls.Add(textBoxFilter);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(753, 131);
+            panel1.Size = new Size(658, 98);
             panel1.TabIndex = 1;
             // 
             // button1
             // 
-            button1.Location = new Point(13, 45);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(11, 34);
             button1.Name = "button1";
-            button1.Size = new Size(153, 41);
+            button1.Size = new Size(134, 31);
             button1.TabIndex = 2;
             button1.Text = "Imprimir";
             button1.UseVisualStyleBackColor = true;
@@ -125,11 +122,10 @@
             // progressBarSolicitudes
             // 
             progressBarSolicitudes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            progressBarSolicitudes.Location = new Point(3, 4);
-            progressBarSolicitudes.Margin = new Padding(3, 4, 3, 4);
+            progressBarSolicitudes.Location = new Point(3, 3);
             progressBarSolicitudes.MarqueeAnimationSpeed = 10;
             progressBarSolicitudes.Name = "progressBarSolicitudes";
-            progressBarSolicitudes.Size = new Size(750, 31);
+            progressBarSolicitudes.Size = new Size(655, 23);
             progressBarSolicitudes.Style = ProgressBarStyle.Marquee;
             progressBarSolicitudes.TabIndex = 1;
             progressBarSolicitudes.Visible = false;
@@ -137,10 +133,9 @@
             // textBoxFilter
             // 
             textBoxFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxFilter.Location = new Point(3, 96);
-            textBoxFilter.Margin = new Padding(3, 4, 3, 4);
+            textBoxFilter.Location = new Point(3, 72);
             textBoxFilter.Name = "textBoxFilter";
-            textBoxFilter.Size = new Size(747, 27);
+            textBoxFilter.Size = new Size(653, 23);
             textBoxFilter.TabIndex = 0;
             textBoxFilter.Text = "Filtrar";
             textBoxFilter.TextChanged += textBoxFilter_TextChanged;
@@ -149,22 +144,30 @@
             // 
             dataGridViewSolicitudes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewSolicitudes.Location = new Point(0, 139);
-            dataGridViewSolicitudes.Margin = new Padding(3, 4, 3, 4);
+            dataGridViewSolicitudes.Location = new Point(0, 104);
             dataGridViewSolicitudes.Name = "dataGridViewSolicitudes";
             dataGridViewSolicitudes.RowHeadersWidth = 51;
-            dataGridViewSolicitudes.Size = new Size(753, 587);
+            dataGridViewSolicitudes.Size = new Size(658, 440);
             dataGridViewSolicitudes.TabIndex = 0;
             dataGridViewSolicitudes.CellContentClick += dataGridViewSolicitudes_CellContentClick;
             dataGridViewSolicitudes.CellEnter += dataGridViewSolicitudes_CellEnter;
             // 
+            // labelDescripcion
+            // 
+            labelDescripcion.Location = new Point(182, 272);
+            labelDescripcion.Multiline = true;
+            labelDescripcion.Name = "labelDescripcion";
+            labelDescripcion.ReadOnly = true;
+            labelDescripcion.ScrollBars = ScrollBars.Both;
+            labelDescripcion.Size = new Size(261, 65);
+            labelDescripcion.TabIndex = 43;
+            // 
             // progressBarEstados
             // 
-            progressBarEstados.Location = new Point(208, 477);
-            progressBarEstados.Margin = new Padding(3, 4, 3, 4);
+            progressBarEstados.Location = new Point(182, 358);
             progressBarEstados.MarqueeAnimationSpeed = 10;
             progressBarEstados.Name = "progressBarEstados";
-            progressBarEstados.Size = new Size(287, 31);
+            progressBarEstados.Size = new Size(251, 23);
             progressBarEstados.Style = ProgressBarStyle.Marquee;
             progressBarEstados.TabIndex = 42;
             progressBarEstados.Visible = false;
@@ -172,18 +175,17 @@
             // labelId
             // 
             labelId.AutoSize = true;
-            labelId.Location = new Point(66, 15);
+            labelId.Location = new Point(58, 11);
             labelId.Name = "labelId";
-            labelId.Size = new Size(0, 20);
+            labelId.Size = new Size(0, 15);
             labelId.TabIndex = 41;
             labelId.Visible = false;
             // 
             // btnVerImagen
             // 
-            btnVerImagen.Location = new Point(58, 413);
-            btnVerImagen.Margin = new Padding(3, 4, 3, 4);
+            btnVerImagen.Location = new Point(51, 310);
             btnVerImagen.Name = "btnVerImagen";
-            btnVerImagen.Size = new Size(117, 36);
+            btnVerImagen.Size = new Size(102, 27);
             btnVerImagen.TabIndex = 40;
             btnVerImagen.Text = "Imagen";
             btnVerImagen.UseVisualStyleBackColor = true;
@@ -192,66 +194,58 @@
             // labelDetalleEstado
             // 
             labelDetalleEstado.BorderStyle = BorderStyle.Fixed3D;
-            labelDetalleEstado.Location = new Point(58, 709);
+            labelDetalleEstado.Location = new Point(51, 532);
             labelDetalleEstado.Name = "labelDetalleEstado";
-            labelDetalleEstado.Size = new Size(437, 131);
+            labelDetalleEstado.Size = new Size(382, 98);
             labelDetalleEstado.TabIndex = 39;
-            // 
-            // labelDescripcion
-            // 
-            labelDescripcion.BorderStyle = BorderStyle.Fixed3D;
-            labelDescripcion.Location = new Point(208, 361);
-            labelDescripcion.Name = "labelDescripcion";
-            labelDescripcion.Size = new Size(297, 88);
-            labelDescripcion.TabIndex = 38;
             // 
             // labelFecha
             // 
             labelFecha.BorderStyle = BorderStyle.Fixed3D;
-            labelFecha.Location = new Point(208, 300);
+            labelFecha.Location = new Point(182, 225);
             labelFecha.Name = "labelFecha";
-            labelFecha.Size = new Size(298, 47);
+            labelFecha.Size = new Size(261, 35);
             labelFecha.TabIndex = 37;
             // 
             // labelEstadoActual
             // 
             labelEstadoActual.BorderStyle = BorderStyle.Fixed3D;
-            labelEstadoActual.Location = new Point(208, 236);
+            labelEstadoActual.Location = new Point(182, 177);
             labelEstadoActual.Name = "labelEstadoActual";
-            labelEstadoActual.Size = new Size(298, 53);
+            labelEstadoActual.Size = new Size(261, 40);
             labelEstadoActual.TabIndex = 36;
             // 
             // labelEquipo
             // 
             labelEquipo.BorderStyle = BorderStyle.Fixed3D;
-            labelEquipo.Location = new Point(208, 171);
+            labelEquipo.Location = new Point(182, 128);
             labelEquipo.Name = "labelEquipo";
-            labelEquipo.Size = new Size(298, 53);
+            labelEquipo.Size = new Size(261, 40);
             labelEquipo.TabIndex = 35;
             // 
             // labelUsuario
             // 
             labelUsuario.BorderStyle = BorderStyle.Fixed3D;
-            labelUsuario.Location = new Point(208, 104);
+            labelUsuario.Location = new Point(182, 78);
             labelUsuario.Name = "labelUsuario";
-            labelUsuario.Size = new Size(298, 53);
+            labelUsuario.Size = new Size(261, 40);
             labelUsuario.TabIndex = 34;
             // 
             // labelDepartamento
             // 
             labelDepartamento.BorderStyle = BorderStyle.Fixed3D;
-            labelDepartamento.Location = new Point(208, 36);
+            labelDepartamento.Location = new Point(182, 27);
             labelDepartamento.Name = "labelDepartamento";
-            labelDepartamento.Size = new Size(298, 53);
+            labelDepartamento.Size = new Size(261, 40);
             labelDepartamento.TabIndex = 33;
             // 
             // listBoxEstados
             // 
             listBoxEstados.FormattingEnabled = true;
-            listBoxEstados.Location = new Point(58, 520);
-            listBoxEstados.Margin = new Padding(3, 4, 3, 4);
+            listBoxEstados.ItemHeight = 15;
+            listBoxEstados.Location = new Point(51, 390);
             listBoxEstados.Name = "listBoxEstados";
-            listBoxEstados.Size = new Size(436, 184);
+            listBoxEstados.Size = new Size(382, 139);
             listBoxEstados.TabIndex = 32;
             listBoxEstados.SelectedIndexChanged += listBoxEstados_SelectedIndexChanged;
             // 
@@ -259,9 +253,9 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(58, 477);
+            label8.Location = new Point(51, 358);
             label8.Name = "label8";
-            label8.Size = new Size(68, 20);
+            label8.Size = new Size(53, 15);
             label8.TabIndex = 31;
             label8.Text = "Historial";
             // 
@@ -269,9 +263,9 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(58, 363);
+            label7.Location = new Point(51, 272);
             label7.Name = "label7";
-            label7.Size = new Size(90, 20);
+            label7.Size = new Size(72, 15);
             label7.TabIndex = 30;
             label7.Text = "Descripción";
             // 
@@ -279,9 +273,9 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(58, 300);
+            label6.Location = new Point(51, 225);
             label6.Name = "label6";
-            label6.Size = new Size(49, 20);
+            label6.Size = new Size(39, 15);
             label6.TabIndex = 29;
             label6.Text = "Fecha";
             // 
@@ -289,9 +283,9 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(58, 236);
+            label5.Location = new Point(51, 177);
             label5.Name = "label5";
-            label5.Size = new Size(102, 20);
+            label5.Size = new Size(79, 15);
             label5.TabIndex = 28;
             label5.Text = "Estado actual";
             // 
@@ -299,9 +293,9 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(58, 171);
+            label4.Location = new Point(51, 128);
             label4.Name = "label4";
-            label4.Size = new Size(57, 20);
+            label4.Size = new Size(44, 15);
             label4.TabIndex = 27;
             label4.Text = "Equipo";
             // 
@@ -309,9 +303,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(58, 112);
+            label3.Location = new Point(51, 84);
             label3.Name = "label3";
-            label3.Size = new Size(63, 20);
+            label3.Size = new Size(49, 15);
             label3.TabIndex = 26;
             label3.Text = "Usuario";
             // 
@@ -319,9 +313,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(58, 53);
+            label2.Location = new Point(51, 40);
             label2.Name = "label2";
-            label2.Size = new Size(111, 20);
+            label2.Size = new Size(89, 15);
             label2.TabIndex = 25;
             label2.Text = "Departamento";
             // 
@@ -337,12 +331,11 @@
             // 
             // Historial
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1321, 852);
+            ClientSize = new Size(1156, 639);
             Controls.Add(splitContainer1);
-            Margin = new Padding(3, 4, 3, 4);
-            MinimumSize = new Size(1337, 888);
+            MinimumSize = new Size(1172, 676);
             Name = "Historial";
             Text = "Historial";
             Load += Historial_Load;
@@ -366,7 +359,6 @@
         private ProgressBar progressBarSolicitudes;
         private Button btnVerImagen;
         private Label labelDetalleEstado;
-        private Label labelDescripcion;
         private Label labelFecha;
         private Label labelEstadoActual;
         private Label labelEquipo;
@@ -384,5 +376,6 @@
         private ProgressBar progressBarEstados;
         private Button button1;
         private PrintPreviewDialog Report;
+        private TextBox labelDescripcion;
     }
 }

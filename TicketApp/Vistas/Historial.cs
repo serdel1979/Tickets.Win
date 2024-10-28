@@ -259,7 +259,7 @@ namespace TicketApp.Vistas
             // Imprimir encabezados solo en la primera página
             //if (currentPage == 0)
             //{
-                // Asegúrate de que todos los encabezados se alineen bien y tengan el mismo tamaño
+            // Asegúrate de que todos los encabezados se alineen bien y tengan el mismo tamaño
             graphics.DrawString("Usuario", headerFont, Brushes.Black, leftMargin, yPos);
             graphics.DrawString("Departamento", headerFont, Brushes.Black, leftMargin + 150, yPos);
             graphics.DrawString("Descripción", headerFont, Brushes.Black, leftMargin + 300, yPos);
@@ -267,7 +267,7 @@ namespace TicketApp.Vistas
             graphics.DrawString("Fecha", headerFont, Brushes.Black, leftMargin + 700, yPos);
 
             yPos += headerHeight; // Aumentar la posición para el contenido
-           // }
+                                  // }
 
             // Imprimir cada solicitud
             for (int i = currentPage * maxLinesPerPage; i < solicitudesFiltradas.Count; i++)
@@ -321,6 +321,7 @@ namespace TicketApp.Vistas
             e.HasMorePages = false; // No hay más páginas
             currentPage = 0;
         }
+
 
     }
 }
