@@ -94,7 +94,7 @@
             historialToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.H;
             historialToolStripMenuItem.Size = new Size(161, 22);
             historialToolStripMenuItem.Text = "Historial";
-            historialToolStripMenuItem.Click += historialToolStripMenuItem_Click;
+            historialToolStripMenuItem.Click += historialToolStripMenuItem_ClickAsync;
             // 
             // splitContainer2
             // 

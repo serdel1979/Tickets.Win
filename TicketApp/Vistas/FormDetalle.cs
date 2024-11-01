@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TicketApp.Services.Data;
+using TicketApp.Services.Helpers;
 using TicketApp.Services.Solicitudes;
 using TicketApp.Signal;
 using static TicketApp.Signal.SignalRClient;
@@ -101,6 +102,12 @@ namespace TicketApp.Vistas
 
         private async void button1_Click_1(object sender, EventArgs e)
         {
+            if (!await NetworkHelper.CheckInternetConnectionAsync())
+            {
+                MessageBox.Show("No hay conexión a internet", "Error de red", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (richTextBoxComentario.Text == "")
             {
                 MessageBox.Show("Debe agregar un comentario", "Completar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TicketApp.Services.Data;
+using TicketApp.Services.Helpers;
 using TicketApp.Services.Login;
 using TicketApp.Services.Solicitudes;
 using TicketApp.Signal;
@@ -189,8 +190,13 @@ namespace TicketApp.Vistas
             Application.Exit();
         }
 
-        private void historialToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void historialToolStripMenuItem_ClickAsync(object sender, EventArgs e)
         {
+            if (!await NetworkHelper.CheckInternetConnectionAsync())
+            {
+                MessageBox.Show("No hay conexión a internet", "Error de red", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             var historial = new Historial(_tokenService, solicitudesService);
             historial.Show();
         }

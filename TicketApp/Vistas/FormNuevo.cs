@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TicketApp.Services.Data;
+using TicketApp.Services.Helpers;
 using TicketApp.Services.Login;
 using TicketApp.Services.Solicitudes;
 using TicketApp.Signal;
@@ -107,40 +108,47 @@ namespace TicketApp.Vistas
 
         private async void btnEnviar_Click(object sender, EventArgs e)
         {
-            try
+            if (await NetworkHelper.CheckInternetConnectionAsync())
             {
-                if (txtUsuario.Text == "" || txtDepartamento.Text == "" || richTextDescripcion.Text == "")
+                try
                 {
-                    MessageBox.Show("No debe dejar campos vacíos", "Datos inválidos", MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
+                    if (txtUsuario.Text == "" || txtDepartamento.Text == "" || richTextDescripcion.Text == "")
+                    {
+                        MessageBox.Show("No debe dejar campos vacíos", "Datos inválidos", MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        return;
+                    }
+                    progressBarNuevo.Visible = true;
+                    solicitud.Equipo = txtEquipo.Text.ToUpper();
+                    solicitud.Usuario = txtUsuario.Text.ToUpper();
+                    solicitud.Descripcion = richTextDescripcion.Text.ToUpper();
+                    await _solicitudes.CrearSolicitud(solicitud);
+                    progressBarNuevo.Visible = false;
+
+                    txtEquipo.Text = "";
+                    txtUsuario.Text = "";
+                    richTextDescripcion.Text = "";
+
+                    pictureBoxImagen.Image = null;
+
+                    var message = new SignalRClient.NewMessage("user", "refrescar", "refresh");
+                    await _signalRClient.SendMessageAsync(message);
+
+                    MessageBox.Show("Solicitud enviada", "Información",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                progressBarNuevo.Visible = true;
-                solicitud.Equipo = txtEquipo.Text.ToUpper();
-                solicitud.Usuario = txtUsuario.Text.ToUpper();
-                solicitud.Descripcion = richTextDescripcion.Text.ToUpper();
-                await _solicitudes.CrearSolicitud(solicitud);
-                progressBarNuevo.Visible = false;
-
-                txtEquipo.Text = "";
-                txtUsuario.Text = "";
-                richTextDescripcion.Text = "";
-
-                pictureBoxImagen.Image = null;
-
-                var message = new SignalRClient.NewMessage("user", "refrescar", "refresh");
-                await _signalRClient.SendMessageAsync(message);
-
-                MessageBox.Show("Solicitud enviada", "Información",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                catch (Exception)
+                {
+                    progressBarNuevo.Visible = false;
+                    MessageBox.Show("No se pudo crear la solicitud", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception)
+            else
             {
-                progressBarNuevo.Visible = false;
-                MessageBox.Show("No se pudo crear la solicitud", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No hay conexión a internet", "Error de red", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-
         }
 
 

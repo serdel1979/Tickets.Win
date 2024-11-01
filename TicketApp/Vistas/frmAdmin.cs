@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TicketApp.Services.Data;
+using TicketApp.Services.Helpers;
 using TicketApp.Services.Login;
 using TicketApp.Services.Solicitudes;
 using TicketApp.Signal;
@@ -48,9 +49,13 @@ namespace TicketApp.Vistas
 
         public async void CargarSolicitudes()
         {
-            try
+            if (!await NetworkHelper.CheckInternetConnectionAsync())
             {
-                solicitudes = await solicitudesService.GetSolicitudes();
+                MessageBox.Show("No hay conexión a internet", "Error de red", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            solicitudes = await solicitudesService.GetSolicitudes();
                 if (solicitudes.Count == 0)
                 {
                     dataGridViewSolicitudes.Visible = false;
@@ -64,12 +69,6 @@ namespace TicketApp.Vistas
                     label1.Visible = true;
                 }
                 ActualizarUIConSolicitudes();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show($"Error al obtener solicitudes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void ActualizarUIConSolicitudes()
@@ -151,10 +150,17 @@ namespace TicketApp.Vistas
             CargarSolicitudes();
         }
 
-        private void btnNueva_Click(object sender, EventArgs e)
+        private async void btnNueva_ClickAsync(object sender, EventArgs e)
         {
-            FormNuevo nuevo = new FormNuevo(_tokenService, solicitudesService);
-            nuevo.Show();
+            if (await NetworkHelper.CheckInternetConnectionAsync())
+            {
+                FormNuevo nuevo = new FormNuevo(_tokenService, solicitudesService);
+                nuevo.Show();
+            }
+            else
+            {
+                MessageBox.Show("No hay conexión a internet", "Error de red", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void frmAdmin_FormClosing(object sender, FormClosingEventArgs e)
@@ -162,15 +168,29 @@ namespace TicketApp.Vistas
             Application.Exit();
         }
 
-        private void historialToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void historialToolStripMenuItem_ClickAsync(object sender, EventArgs e)
         {
+            if (!await NetworkHelper.CheckInternetConnectionAsync())
+            {
+                MessageBox.Show("No hay conexión a internet", "Error de red", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             var historial = new Historial(_tokenService, solicitudesService);
             historial.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_ClickAsync(object sender, EventArgs e)
         {
-            CargarSolicitudes();
+
+            if (await NetworkHelper.CheckInternetConnectionAsync())
+            {
+                CargarSolicitudes();
+            }
+            else
+            {
+                MessageBox.Show("No hay conexión a internet", "Error de red", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }

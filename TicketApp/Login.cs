@@ -10,6 +10,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TicketApp.Services.Data;
+using TicketApp.Services.Helpers;
 using TicketApp.Services.Login;
 using TicketApp.Services.Solicitudes;
 using TicketApp.Vistas;
@@ -65,9 +66,17 @@ namespace TicketApp
         }
 
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_ClickAsync(object sender, EventArgs e)
         {
-            Ingresar();
+            if (await NetworkHelper.CheckInternetConnectionAsync())
+            {
+                Ingresar();
+            }
+            else
+            {
+                MessageBox.Show("No hay conexión a internet","Error de red",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+                
         }
 
         private void txtUser_KeyPress(object sender, KeyPressEventArgs e)

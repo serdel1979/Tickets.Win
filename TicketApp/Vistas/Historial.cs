@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TicketApp.Services.Data;
+using TicketApp.Services.Helpers;
 using TicketApp.Services.Login;
 using TicketApp.Services.Solicitudes;
 
@@ -176,12 +177,18 @@ namespace TicketApp.Vistas
                 labelEstadoActual.Text = Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["EstadoActual"].Value);
                 labelFecha.Text = Convert.ToString(dataGridViewSolicitudes.CurrentRow.Cells["Fecha"].Value);
                 progressBarEstados.Visible = true;
-
-                detalleSolicitud = await solicitudesService.GetDetalleSolicitud(Int32.Parse(labelId.Text));
-                listBoxEstados.Items.Clear();
-                foreach (var estado in detalleSolicitud.Estados)
+                if (await NetworkHelper.CheckInternetConnectionAsync())
                 {
-                    listBoxEstados.Items.Add($"ESTADO: {estado.EstadoActual} | {estado.Comentario} | {estado.Fecha.ToString("dd/MM/yyyy HH:mm:ss")}");
+                    detalleSolicitud = await solicitudesService.GetDetalleSolicitud(Int32.Parse(labelId.Text));
+                    listBoxEstados.Items.Clear();
+                    foreach (var estado in detalleSolicitud.Estados)
+                    {
+                        listBoxEstados.Items.Add($"ESTADO: {estado.EstadoActual} | {estado.Comentario} | {estado.Fecha.ToString("dd/MM/yyyy HH:mm:ss")}");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay conexión a internet", "Error de red", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 progressBarEstados.Visible = false;

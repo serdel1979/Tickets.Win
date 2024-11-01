@@ -122,7 +122,7 @@
             historialToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.H;
             historialToolStripMenuItem.Size = new Size(201, 26);
             historialToolStripMenuItem.Text = "Historial";
-            historialToolStripMenuItem.Click += historialToolStripMenuItem_Click;
+            historialToolStripMenuItem.Click += historialToolStripMenuItem_ClickAsync;
             // 
             // dataGridViewSolicitudes
             // 
@@ -210,7 +210,7 @@
             btnNueva.TabIndex = 9;
             btnNueva.Text = "Nueva";
             btnNueva.UseVisualStyleBackColor = true;
-            btnNueva.Click += btnNueva_Click;
+            btnNueva.Click += btnNueva_ClickAsync;
             // 
             // label1
             // 
@@ -240,7 +240,7 @@
             button2.TabIndex = 12;
             button2.Text = "Refrescar";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            button2.Click += button2_ClickAsync;
             // 
             // frmAdmin
             // 
