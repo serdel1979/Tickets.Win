@@ -165,7 +165,12 @@ namespace TicketApp.Vistas
         private void historialToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var historial = new Historial(_tokenService, solicitudesService);
-            historial.Show();   
+            historial.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CargarSolicitudes();
         }
     }
 }

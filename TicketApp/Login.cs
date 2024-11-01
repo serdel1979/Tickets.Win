@@ -14,6 +14,9 @@ using TicketApp.Services.Login;
 using TicketApp.Services.Solicitudes;
 using TicketApp.Vistas;
 
+
+
+
 namespace TicketApp
 {
     public partial class Login : Form
@@ -23,6 +26,8 @@ namespace TicketApp
         private readonly TokenService _tokenService;
         private readonly ISolicitudesService solicitudesService;
         private readonly AppSettings _appSettings;
+
+        private const string FilePath = "data.txt";
 
         public Login(ILoginService loginService, IOptions<AppSettings> appSettings, TokenService tokenService,
             ISolicitudesService solicitudesService)
@@ -34,6 +39,31 @@ namespace TicketApp
             this.solicitudesService = solicitudesService;
             this._appSettings = appSettings.Value;
         }
+
+
+
+        private void LoadLoginData()
+        {
+            if (File.Exists(FilePath))
+            {
+                string encryptedData = File.ReadAllText(FilePath);
+                string decryptedData = Decrypt(encryptedData);
+                string[] credentials = decryptedData.Split(':');
+                if (credentials.Length == 2)
+                {
+                    txtUser.Text = credentials[0];
+                    txtPassword.Text = credentials[1];
+                    btnLogin.Focus();
+                }
+            }
+        }
+
+        private string Decrypt(string encryptedText)
+        {
+            byte[] encryptedBytes = Convert.FromBase64String(encryptedText);
+            return Encoding.UTF8.GetString(encryptedBytes);
+        }
+
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -71,6 +101,20 @@ namespace TicketApp
                 _tokenService.SetLoginResponse(response);
                 LoginResponse resp = _tokenService.LoginResponse;
 
+                string encryptedData = File.Exists(FilePath) ? File.ReadAllText(FilePath) : null;
+                string decryptedData = encryptedData != null ? Decrypt(encryptedData) : "";
+                string[] storedCredentials = decryptedData.Split(':');
+
+                if (storedCredentials.Length != 2 ||
+                    storedCredentials[0] != username ||
+                    storedCredentials[1] != password)
+                {
+                    // Si los valores ingresados son diferentes a los almacenados, se actualiza el archivo
+                    string newData = $"{username}:{password}";
+                    string newEncryptedData = Encrypt(newData);
+                    File.WriteAllText(FilePath, newEncryptedData);
+                }
+
                 if (resp.claims == 1)
                 {
                     var frmAdmin = new frmAdmin(_tokenService, solicitudesService); // Pasar el servicio al nuevo formulario
@@ -101,6 +145,16 @@ namespace TicketApp
             }
         }
 
+
+
+        private string Encrypt(string plainText)
+        {
+            byte[] plainBytes = Encoding.UTF8.GetBytes(plainText);
+            return Convert.ToBase64String(plainBytes);
+        }
+
+
+
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -113,6 +167,11 @@ namespace TicketApp
         private void Login_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            LoadLoginData();
         }
     }
 }

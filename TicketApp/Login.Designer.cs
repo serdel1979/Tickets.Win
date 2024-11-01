@@ -114,6 +114,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             FormClosing += Login_FormClosing;
+            Load += Login_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -46,6 +46,7 @@
             btnNueva = new Button();
             label1 = new Label();
             label2 = new Label();
+            button2 = new Button();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewSolicitudes).BeginInit();
@@ -231,11 +232,22 @@
             label2.Text = "NO HAY SOLICITUDES";
             label2.Visible = false;
             // 
+            // button2
+            // 
+            button2.Location = new Point(268, 155);
+            button2.Name = "button2";
+            button2.Size = new Size(135, 61);
+            button2.TabIndex = 12;
+            button2.Text = "Refrescar";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // frmAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1333, 827);
+            Controls.Add(button2);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnNueva);
@@ -283,5 +295,6 @@
         private Button btnNueva;
         private Label label1;
         private Label label2;
+        private Button button2;
     }
 }
