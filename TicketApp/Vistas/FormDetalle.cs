@@ -64,7 +64,7 @@ namespace TicketApp.Vistas
             labelEquipo.Text = detalleSolicitud.Equipo;
             labelDescripcion.Text = detalleSolicitud.Descripcion;
             labelEstadoActual.Text = detalleSolicitud.EstadoActual;
-            labelFecha.Text = detalleSolicitud.Fecha.ToString("dd/MM/yyyy HH:mm:ss");
+            labelFecha.Text = detalleSolicitud.Fecha.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss");
             UrlImagen = detalleSolicitud.UrlImagen;
 
             if (UrlImagen.IsNullOrEmpty())
@@ -75,7 +75,7 @@ namespace TicketApp.Vistas
             listBoxEstados.Items.Clear();
             foreach (var desc in detalleSolicitud.Estados)
             {
-                listBoxEstados.Items.Add($"ESTADO: {desc.EstadoActual} | {desc.Comentario} | {desc.Fecha.ToString("dd/MM/yyyy HH:mm:ss")}");
+                listBoxEstados.Items.Add($"ESTADO: {desc.EstadoActual} | {desc.Comentario} | {desc.Fecha.ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss")}");
             }
 
             load2 = true;
