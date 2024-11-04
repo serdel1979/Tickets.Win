@@ -56,19 +56,19 @@ namespace TicketApp.Vistas
             }
 
             solicitudes = await solicitudesService.GetSolicitudes();
-                if (solicitudes.Count == 0)
-                {
-                    dataGridViewSolicitudes.Visible = false;
-                    label2.Visible = true;
-                    label1.Visible = false;
-                }
-                else
-                {
-                    dataGridViewSolicitudes.Visible = true;
-                    label2.Visible = false;
-                    label1.Visible = true;
-                }
-                ActualizarUIConSolicitudes();
+            if (solicitudes.Count == 0)
+            {
+                dataGridViewSolicitudes.Visible = false;
+                label2.Visible = true;
+                label1.Visible = false;
+            }
+            else
+            {
+                dataGridViewSolicitudes.Visible = true;
+                label2.Visible = false;
+                label1.Visible = true;
+            }
+            ActualizarUIConSolicitudes();
         }
 
         private void ActualizarUIConSolicitudes()
@@ -190,7 +190,19 @@ namespace TicketApp.Vistas
             {
                 MessageBox.Show("No hay conexión a internet", "Error de red", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
+        }
+
+        private void dataGridViewSolicitudes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if ((dataGridViewSolicitudes.Columns[e.ColumnIndex].Name == "Fecha" ||
+                 dataGridViewSolicitudes.Columns[e.ColumnIndex].Name == "FechaEstado") &&
+                 e.Value is DateTime fecha)
+            {
+                // Convierte la fecha a la hora local y formatea la visualización
+                e.Value = fecha.ToLocalTime().ToString("g"); // Puedes ajustar el formato "g" según tus preferencias
+                e.FormattingApplied = true;
+            }
         }
     }
 }

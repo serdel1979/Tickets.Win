@@ -116,6 +116,7 @@
             dataGridViewSolicitudes.TabIndex = 2;
             dataGridViewSolicitudes.CellContentClick += dataGridViewSolicitudes_CellContentClick;
             dataGridViewSolicitudes.CellEnter += dataGridViewSolicitudes_CellEnter;
+            dataGridViewSolicitudes.CellFormatting += dataGridViewSolicitudes_CellFormatting;
             // 
             // panel2
             // 

@@ -28,7 +28,12 @@ namespace TicketApp
         private readonly ISolicitudesService solicitudesService;
         private readonly AppSettings _appSettings;
 
-        private const string FilePath = "data.txt";
+
+        private static readonly string FolderPath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "ticket");
+
+        private static readonly string FilePath = Path.Combine(FolderPath, "data.txt");
 
         public Login(ILoginService loginService, IOptions<AppSettings> appSettings, TokenService tokenService,
             ISolicitudesService solicitudesService)
@@ -39,7 +44,16 @@ namespace TicketApp
             this._tokenService = tokenService;
             this.solicitudesService = solicitudesService;
             this._appSettings = appSettings.Value;
+            if (!Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+
         }
+
+
+
+ 
 
 
 

@@ -151,6 +151,7 @@
             dataGridViewSolicitudes.TabIndex = 0;
             dataGridViewSolicitudes.CellContentClick += dataGridViewSolicitudes_CellContentClick;
             dataGridViewSolicitudes.CellEnter += dataGridViewSolicitudes_CellEnter;
+            dataGridViewSolicitudes.CellFormatting += dataGridViewSolicitudes_CellFormatting;
             // 
             // labelDescripcion
             // 

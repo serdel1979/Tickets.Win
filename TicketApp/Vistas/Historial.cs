@@ -288,7 +288,7 @@ namespace TicketApp.Vistas
                 SizeF departamentoSize = graphics.MeasureString(solicitud.Departamento, font, new SizeF(150, float.MaxValue));
                 SizeF descripcionSize = graphics.MeasureString(solicitud.Descripcion, font, new SizeF(300, float.MaxValue));
                 SizeF estadoSize = graphics.MeasureString(solicitud.EstadoActual, font, new SizeF(100, float.MaxValue));
-                SizeF fechaSize = graphics.MeasureString(solicitud.FechaEstado.ToString("dd/MM/yyyy HH:mm"), font, new SizeF(100, float.MaxValue));
+                SizeF fechaSize = graphics.MeasureString(solicitud.FechaEstado.ToLocalTime().ToString("dd/MM/yyyy HH:mm"), font, new SizeF(100, float.MaxValue));
 
                 // Calcular el mayor tamaño de los campos
                 float maxHeight = Math.Max(usuarioSize.Height, Math.Max(departamentoSize.Height, Math.Max(descripcionSize.Height, Math.Max(estadoSize.Height, fechaSize.Height))));
@@ -311,7 +311,7 @@ namespace TicketApp.Vistas
 
                 // Dibujar Fecha
                 RectangleF fechaRect = new RectangleF(leftMargin + 700, yPos, 100, maxHeight);
-                graphics.DrawString(solicitud.FechaEstado.ToString("dd/MM/yyyy HH:mm"), font, Brushes.Black, fechaRect);
+                graphics.DrawString(solicitud.FechaEstado.ToLocalTime().ToString("dd/MM/yyyy HH:mm"), font, Brushes.Black, fechaRect);
 
                 // Aumentar yPos según el tamaño máximo de la línea
                 yPos += maxHeight + 5; // Agregar un margen entre filas
@@ -329,6 +329,16 @@ namespace TicketApp.Vistas
             currentPage = 0;
         }
 
-
+        private void dataGridViewSolicitudes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if ((dataGridViewSolicitudes.Columns[e.ColumnIndex].Name == "Fecha" ||
+               dataGridViewSolicitudes.Columns[e.ColumnIndex].Name == "FechaEstado") &&
+               e.Value is DateTime fecha)
+            {
+                // Convierte la fecha a la hora local y formatea la visualización
+                e.Value = fecha.ToLocalTime().ToString("g"); // Puedes ajustar el formato "g" según tus preferencias
+                e.FormattingApplied = true;
+            }
+        }
     }
 }
